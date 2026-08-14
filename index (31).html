@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>It's in the Core | A Conversation in a Book</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blush:#F2C4CE;--deep-rose:#C4607A;--mauve:#D98EA0;--gold:#C9973F;--gold-lt:#E8C87A;--sage:#6B8F71;--forest:#3A5C40;--cream:#FAF6EF;--ivory:#FDF9F4;--warm:#FFFCF8;--dark:#2A1F1A;--muted:#8A7A72;--serif:'Playfair Display',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--warm);color:var(--dark);overflow-x:hidden}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;transition:background .4s,box-shadow .4s}
+nav.sc{background:rgba(253,249,244,.96);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(196,145,58,.12)}
+.nlogo{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#fff;text-decoration:none;transition:color .3s}
+nav.sc .nlogo{color:var(--forest)}
+.nlinks{display:flex;gap:2rem;list-style:none}
+.nlinks a{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,252,248,.7);text-decoration:none;transition:color .3s}
+nav.sc .nlinks a{color:var(--muted)}
+.nlinks a:hover{color:var(--gold)}
+.ncta{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;background:var(--deep-rose);color:#fff;padding:.55rem 1.4rem;text-decoration:none;border-radius:3px;transition:background .3s}
+.ncta:hover{background:var(--mauve)}
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;padding:8rem 4rem 5rem;overflow:hidden;background:linear-gradient(145deg,#2E1A20 0%,#3A2430 30%,#2A3828 70%,#1E2E1E 100%)}
+.orbs{position:absolute;inset:0;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(80px)}
+.o1{width:500px;height:500px;background:rgba(232,160,176,.18);top:-100px;right:0}
+.o2{width:400px;height:400px;background:rgba(107,143,113,.15);bottom:-80px;left:-80px}
+.o3{width:300px;height:300px;background:rgba(201,151,63,.12);top:30%;right:20%}
+.hfloret{position:absolute;right:5rem;top:50%;transform:translateY(-50%);width:360px;height:360px;opacity:.06;pointer-events:none}
+.hcontent{position:relative;z-index:2;max-width:590px;flex:1}
+.hero-image-wrap{position:relative;z-index:2;width:min(43vw,560px);margin-left:3rem;flex-shrink:0}
+.hero-image-frame{position:relative;border:1px solid rgba(201,151,63,.42);padding:.55rem;background:rgba(253,249,244,.08);box-shadow:0 30px 80px rgba(0,0,0,.32);transform:rotate(1deg)}
+.hero-image{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center;border-radius:2px}
+.hero-image-note{position:absolute;right:-1.2rem;bottom:1.4rem;background:rgba(253,249,244,.96);padding:.85rem 1.15rem;min-width:170px;box-shadow:0 14px 30px rgba(0,0,0,.18)}
+.hero-image-note span{display:block;font-family:var(--serif);font-size:1rem;color:var(--forest)}
+.hero-image-note small{display:block;margin-top:.18rem;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--deep-rose)}
+
+.heyebrow{display:inline-flex;align-items:center;gap:.7rem;background:rgba(201,151,63,.12);border:1px solid rgba(201,151,63,.25);border-radius:100px;padding:.38rem .95rem;margin-bottom:1.5rem}
+.heyebrow .pip{width:5px;height:5px;background:var(--gold);border-radius:50%}
+.heyebrow span{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-lt)}
+.hbadge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(58,92,64,.4);border:1px solid rgba(107,143,113,.4);border-radius:100px;padding:.35rem .9rem;margin-bottom:1.5rem;margin-left:.75rem}
+.hbadge span{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sage)}
+.h1{font-family:var(--serif);font-size:clamp(3rem,7vw,5.5rem);line-height:1;font-weight:400;color:#fff;margin-bottom:1.5rem}
+.h1 i{font-style:italic;color:var(--blush);display:block}
+.h1 b{font-weight:600;color:var(--gold-lt);display:block}
+.hsub{font-size:.97rem;line-height:1.8;color:rgba(250,246,239,.58);font-weight:300;max-width:500px;margin-bottom:2.5rem}
+.hbtns{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center}
+.btn-primary{background:var(--deep-rose);color:#fff;padding:.88rem 2.4rem;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;border-radius:3px;border:none;cursor:pointer;font-family:var(--sans);transition:background .3s;display:inline-block}
+.btn-primary:hover{background:var(--mauve)}
+.btn-gold{background:var(--gold);color:#fff;padding:.88rem 2.4rem;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;text-decoration:none;border-radius:3px;border:none;cursor:pointer;font-family:var(--sans);transition:background .3s;display:inline-block}
+.btn-gold:hover{background:#B8862E}
+.btn-ghost{color:rgba(250,246,239,.7);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;font-weight:400;text-decoration:none;border:1px solid rgba(201,151,63,.35);padding:.86rem 1.8rem;border-radius:3px;transition:all .3s;display:inline-block}
+.btn-ghost:hover{background:rgba(201,151,63,.08);border-color:var(--gold);color:var(--gold-lt)}
+.scrollhint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(250,246,239,.22);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase}
+.sline{width:1px;height:44px;background:linear-gradient(to bottom,rgba(201,151,63,.5),transparent);animation:drop 2s ease-in-out infinite}
+@keyframes drop{0%,100%{opacity:.3}50%{opacity:1}}
+/* WELCOME */
+.welcome{padding:7rem 4rem;background:var(--ivory);position:relative;overflow:hidden}
+.welcome::before{content:'';position:absolute;top:0;right:0;width:400px;height:400px;background:radial-gradient(circle,rgba(242,196,206,.16) 0%,transparent 70%);pointer-events:none}
+.wrapinner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:6rem;align-items:center}
+.wbadge{display:inline-flex;align-items:center;gap:.55rem;margin-bottom:1.5rem}
+.wbline{width:24px;height:1px;background:var(--deep-rose)}
+.wbtxt{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--deep-rose);font-weight:500}
+.wleft h2{font-family:var(--serif);font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:400;color:var(--forest);line-height:1.18;margin-bottom:1.4rem}
+.wleft h2 em{font-style:italic;color:var(--deep-rose)}
+.wleft p{font-size:.92rem;line-height:1.85;color:var(--muted);font-weight:300;margin-bottom:.9rem}
+.wleft p strong{color:var(--dark);font-weight:500}
+.wright{display:flex;flex-direction:column;gap:1.1rem}
+.wcard{display:flex;gap:1.1rem;align-items:flex-start;padding:1.4rem;background:var(--warm);border-left:3px solid var(--blush);border-radius:0 8px 8px 0;transition:border-color .3s,transform .3s}
+.wcard:hover{border-color:var(--deep-rose);transform:translateX(4px)}
+.wicon{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.wicon svg{width:16px;height:16px;stroke-width:1.5;fill:none}
+.wi-r{background:rgba(242,196,206,.25)}.wi-r svg{stroke:var(--deep-rose)}
+.wi-g{background:rgba(201,151,63,.15)}.wi-g svg{stroke:var(--gold)}
+.wi-s{background:rgba(107,143,113,.2)}.wi-s svg{stroke:var(--sage)}
+.wctitle{font-size:.88rem;font-weight:500;color:var(--dark);margin-bottom:.3rem}
+.wcdesc{font-size:.8rem;color:var(--muted);line-height:1.6;font-weight:300}
+/* VERSE */
+.verse{background:var(--forest);padding:4.5rem 4rem;text-align:center;position:relative;overflow:hidden}
+.verse::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(107,143,113,.3) 0%,transparent 60%)}
+.vinner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.vdeco{display:flex;align-items:center;justify-content:center;gap:.9rem;margin-bottom:1.75rem}
+.vdeco span{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(216,234,217,.45)}
+.vdeco::before,.vdeco::after{content:'';display:block;width:36px;height:1px;background:rgba(201,151,63,.35)}
+.vquote{font-family:var(--serif);font-size:clamp(1.35rem,2.8vw,2.1rem);font-style:italic;color:var(--cream);line-height:1.5;margin-bottom:1.1rem}
+.vref{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-lt)}
+/* JOURNALS */
+.jsection{padding:7rem 4rem;background:var(--cream)}
+.shead{text-align:center;max-width:560px;margin:0 auto 4.5rem}
+.stag{display:flex;align-items:center;justify-content:center;gap:.7rem;margin-bottom:1.4rem}
+.stag span{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.stag::before,.stag::after{content:'';display:block;width:22px;height:1px;background:rgba(201,151,63,.4)}
+.shead h2{font-family:var(--serif);font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:400;color:var(--forest);line-height:1.18;margin-bottom:.9rem}
+.shead h2 em{font-style:italic;color:var(--deep-rose)}
+.shead p{font-size:.88rem;color:var(--muted);line-height:1.75;font-weight:300}
+.jgrid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.jcard{background:var(--warm);border-radius:14px;padding:2.2rem 1.8rem 1.8rem;position:relative;overflow:hidden;border:1px solid rgba(216,142,160,.1);display:flex;flex-direction:column;transition:transform .35s,box-shadow .35s}
+.jcard:hover{transform:translateY(-5px);box-shadow:0 18px 45px rgba(58,92,64,.1)}
+.jtop{position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
+.tr{background:linear-gradient(90deg,var(--blush),var(--deep-rose))}.tg{background:linear-gradient(90deg,var(--gold-lt),var(--gold))}.ts{background:linear-gradient(90deg,#9BB89F,var(--forest))}
+.jnum{font-family:var(--serif);font-size:3.8rem;font-weight:400;color:rgba(196,96,122,.07);line-height:1;margin-bottom:.6rem}
+.jmeta{display:flex;align-items:center;gap:.55rem;margin-bottom:.7rem}
+.jtag{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:.28rem .75rem;border-radius:100px}
+.tag-r{background:rgba(242,196,206,.5);color:var(--deep-rose)}.tag-g{background:rgba(245,232,200,.7);color:#9B6A1C}.tag-s{background:rgba(216,234,217,.6);color:var(--forest)}
+.jpgs{font-size:.6rem;color:var(--muted)}
+.jtitle{font-family:var(--serif);font-size:1.15rem;font-weight:500;color:var(--dark);line-height:1.25;margin-bottom:.65rem}
+.jdesc{font-size:.8rem;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:.9rem;flex:1}
+.jsref{font-size:.7rem;font-style:italic;margin-bottom:1.1rem}
+.jsref.cr{color:var(--deep-rose)}.jsref.cg{color:var(--gold)}.jsref.cs{color:var(--forest)}
+.jbtns{display:flex;gap:.6rem;margin-top:auto}
+.jbtn-preview{flex:1;padding:.62rem .5rem;border-radius:3px;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;cursor:pointer;font-family:var(--sans);background:transparent;transition:all .3s}
+.jbtn-preview.r{border:1.5px solid rgba(196,96,122,.28);color:var(--deep-rose)}.jbtn-preview.r:hover{background:var(--deep-rose);color:#fff;border-color:var(--deep-rose)}
+.jbtn-preview.g{border:1.5px solid rgba(201,151,63,.28);color:var(--gold)}.jbtn-preview.g:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.jbtn-preview.s{border:1.5px solid rgba(58,92,64,.28);color:var(--forest)}.jbtn-preview.s:hover{background:var(--forest);color:#fff;border-color:var(--forest)}
+.jbtn-order{padding:.62rem .85rem;border-radius:3px;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;cursor:pointer;font-family:var(--sans);border:none;transition:background .3s;white-space:nowrap}
+.jbtn-order.r{background:var(--deep-rose);color:#fff}.jbtn-order.r:hover{background:var(--mauve)}
+.jbtn-order.g{background:var(--gold);color:#fff}.jbtn-order.g:hover{background:#B8862E}
+.jbtn-order.s{background:var(--forest);color:#fff}.jbtn-order.s:hover{background:#2E4835}
+/* PHILOSOPHY */
+.phil{padding:7rem 4rem;background:var(--warm)}
+.philinner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5.5rem;align-items:center}
+.philinner h2{font-family:var(--serif);font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:400;color:var(--forest);line-height:1.18;margin-bottom:1.4rem}
+.philinner h2 em{font-style:italic;color:var(--deep-rose)}
+.philinner p{font-size:.9rem;color:var(--muted);line-height:1.85;font-weight:300;margin-bottom:.9rem}
+.psteps{margin-top:2.2rem;display:flex;flex-direction:column;gap:.9rem}
+.pstep{display:flex;gap:1.1rem;align-items:flex-start;padding:1.2rem 1.4rem;border-radius:10px;background:var(--ivory);border:1px solid transparent;transition:border-color .3s,background .3s}
+.pstep:hover{background:var(--warm);border-color:var(--blush)}
+.pnum{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:500}
+.p1{background:rgba(242,196,206,.4);color:var(--deep-rose)}.p2{background:rgba(245,232,200,.6);color:#9B6A1C}.p3{background:rgba(216,234,217,.5);color:var(--forest)}.p4{background:rgba(217,142,160,.2);color:var(--deep-rose)}
+.ptitle{font-size:.86rem;font-weight:500;color:var(--dark);margin-bottom:.22rem}
+.pdesc{font-size:.78rem;color:var(--muted);line-height:1.55;font-weight:300}
+.pqw{background:linear-gradient(135deg,#3A5C40,#2E4835);border-radius:16px;padding:2.8rem;position:relative;overflow:hidden}
+.pqw::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,rgba(201,151,63,.15) 0%,transparent 70%)}
+.pqmark{font-family:var(--serif);font-size:4.5rem;line-height:.7;color:rgba(201,151,63,.3);margin-bottom:1.3rem;display:block}
+.pqtext{font-family:var(--serif);font-size:1.25rem;font-style:italic;color:var(--cream);line-height:1.6;margin-bottom:1.75rem;position:relative;z-index:1}
+.pqname{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-lt);position:relative;z-index:1}
+.pmcards{margin-top:1.4rem;display:flex;flex-direction:column;gap:.7rem}
+.pmcard{display:flex;align-items:center;gap:.9rem;background:rgba(250,246,239,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:.9rem 1.1rem;position:relative;z-index:1}
+.pmdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.pmd-r{background:var(--blush)}.pmd-g{background:var(--gold-lt)}
+.pmtxt{font-size:.8rem;color:rgba(250,246,239,.65);font-weight:300;line-height:1.4}
+.pmtxt strong{color:var(--cream);font-weight:500;display:block;font-size:.82rem}
+/* PRICING */
+.pricing{padding:7rem 4rem;background:var(--dark);position:relative;overflow:hidden}
+.pricing::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(196,96,122,.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 30%,rgba(201,151,63,.07) 0%,transparent 50%)}
+.pricinginner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.ptoggle{display:flex;align-items:center;justify-content:center;gap:0;margin:2rem auto 3.5rem;background:rgba(255,255,255,.06);border-radius:100px;padding:.35rem;width:fit-content;border:1px solid rgba(255,255,255,.1)}
+.ptbtn{padding:.55rem 1.6rem;border-radius:100px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer;border:none;background:transparent;color:rgba(255,255,255,.4);transition:all .3s;font-family:var(--sans)}
+.ptbtn.active{background:var(--gold);color:#fff}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.pcard{border-radius:14px;padding:2rem 1.6rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:transform .3s,box-shadow .3s,background .3s;display:flex;flex-direction:column}
+.pcard:hover{transform:translateY(-5px);background:rgba(255,255,255,.07);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.pcard.pc-featured{background:rgba(201,151,63,.1);border-color:rgba(201,151,63,.25)}
+.pcard-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem}
+.pcard-icon svg{width:20px;height:20px;stroke-width:1.5;fill:none}
+.pi-rose{background:rgba(242,196,206,.15)}.pi-rose svg{stroke:var(--blush)}
+.pi-gold{background:rgba(201,151,63,.2)}.pi-gold svg{stroke:var(--gold-lt)}
+.pi-sage{background:rgba(107,143,113,.2)}.pi-sage svg{stroke:#9BB89F}
+.pi-prem{background:rgba(232,200,122,.15)}.pi-prem svg{stroke:var(--gold-lt)}
+.pcard-label{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;margin-bottom:.5rem}
+.pl-r{color:var(--blush)}.pl-g{color:var(--gold-lt)}.pl-s{color:#9BB89F}.pl-p{color:var(--gold-lt)}
+.pcard h3{font-family:var(--serif);font-size:1.25rem;font-weight:400;color:#fff;margin-bottom:.35rem}
+.pcard-price{font-family:var(--serif);font-size:2rem;font-weight:600;line-height:1;margin-bottom:.25rem}
+.usd-p{display:block}.ksh-p{display:none}
+.pp-r{color:var(--blush)}.pp-g{color:var(--gold-lt)}.pp-s{color:#9BB89F}.pp-p{color:var(--gold-lt)}
+.pcard-range{font-size:.72rem;color:rgba(255,255,255,.3);margin-bottom:1.25rem}
+.pcard-feats{display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.5rem;flex:1}
+.pfeat{display:flex;align-items:flex-start;gap:.6rem;font-size:.78rem;color:rgba(255,255,255,.55);font-weight:300;line-height:1.4}
+.pfeat svg{width:13px;height:13px;flex-shrink:0;margin-top:2px;stroke-width:2.5}
+.pfeat.on svg{stroke:var(--gold-lt)}.pfeat.off{color:rgba(255,255,255,.2)}.pfeat.off svg{stroke:rgba(255,255,255,.2)}
+.pcard-btn{width:100%;padding:.72rem;border-radius:4px;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .3s;border:none}
+.pb-r{background:rgba(242,196,206,.15);color:var(--blush)}.pb-r:hover{background:var(--deep-rose);color:#fff}
+.pb-g{background:rgba(201,151,63,.2);color:var(--gold-lt)}.pb-g:hover{background:var(--gold);color:#fff}
+.pb-s{background:rgba(107,143,113,.15);color:#9BB89F}.pb-s:hover{background:var(--forest);color:#fff}
+.pb-p{background:rgba(232,200,122,.15);color:var(--gold-lt)}.pb-p:hover{background:var(--gold);color:#fff}
+/* NEWSLETTER */
+.newsletter{padding:7rem 4rem;background:var(--cream);position:relative;overflow:hidden}
+.newsletter::before{content:'';position:absolute;top:0;right:0;width:500px;height:500px;background:radial-gradient(circle,rgba(242,196,206,.12) 0%,transparent 65%);pointer-events:none}
+.nlinner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:6rem;align-items:start}
+.nltag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(196,96,122,.08);border-radius:100px;padding:.32rem .85rem;margin-bottom:1.4rem}
+.nltag span{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--deep-rose);font-weight:500}
+.nltag::before{content:'✦';font-size:.55rem;color:var(--deep-rose)}
+.nlleft h2{font-family:var(--serif);font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:400;color:var(--forest);line-height:1.15;margin-bottom:1.2rem}
+.nlleft h2 em{font-style:italic;color:var(--deep-rose)}
+.nlleft p{font-size:.9rem;color:var(--muted);line-height:1.85;font-weight:300;margin-bottom:.9rem}
+.nlfeats{display:flex;flex-direction:column;gap:.75rem;margin-top:1.5rem}
+.nlfeat{display:flex;align-items:flex-start;gap:.9rem;padding:1rem 1.2rem;background:var(--warm);border-radius:8px;border-left:2.5px solid var(--blush);transition:border-color .3s}
+.nlfeat:hover{border-color:var(--deep-rose)}
+.nlfeat-icon{width:32px;height:32px;border-radius:50%;background:rgba(242,196,206,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nlfeat-icon svg{width:14px;height:14px;stroke:var(--deep-rose);stroke-width:1.8;fill:none}
+.nlfeat-title{font-size:.85rem;font-weight:500;color:var(--dark);margin-bottom:.2rem}
+.nlfeat-desc{font-size:.76rem;color:var(--muted);line-height:1.5;font-weight:300}
+.nlright{background:var(--warm);border-radius:16px;padding:2.5rem;box-shadow:0 8px 40px rgba(58,92,64,.08);border:1px solid rgba(196,145,58,.1)}
+.nlright h3{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--forest);margin-bottom:.5rem}
+.nlright p{font-size:.82rem;color:var(--muted);margin-bottom:1.75rem;font-weight:300;line-height:1.6}
+.nlform{display:flex;flex-direction:column;gap:.85rem}
+.nlinput{padding:.82rem 1rem;border-radius:4px;border:1px solid rgba(196,145,58,.2);background:var(--ivory);font-size:.85rem;font-family:var(--sans);color:var(--dark);outline:none;transition:border-color .3s;width:100%}
+.nlinput:focus{border-color:var(--deep-rose)}
+.nlselect{padding:.82rem 1rem;border-radius:4px;border:1px solid rgba(196,145,58,.2);background:var(--ivory);font-size:.82rem;font-family:var(--sans);color:var(--dark);outline:none;width:100%;cursor:pointer;appearance:none;background-image:url("images/select-arrow.svg");background-repeat:no-repeat;background-position:right 1rem center}
+.nlsubmit{padding:.88rem;background:var(--deep-rose);color:#fff;border:none;border-radius:4px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer;font-family:var(--sans);transition:background .3s}
+.nlsubmit:hover{background:var(--mauve)}
+.nlnote{font-size:.68rem;color:var(--muted);text-align:center;margin-top:.3rem}
+.nl-issues{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.25rem}
+.nl-issue-badge{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--deep-rose);background:rgba(242,196,206,.3);padding:.28rem .7rem;border-radius:100px}
+/* VOICES */
+.voices{padding:7rem 4rem;background:var(--ivory)}
+.vinner{max-width:1080px;margin:0 auto}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3.5rem}
+.vcard{padding:2.2rem 1.8rem;border-radius:12px;background:var(--warm);border:1px solid rgba(216,142,160,.1);transition:transform .3s,box-shadow .3s}
+.vcard:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(196,96,122,.08)}
+.vcard.vf{background:linear-gradient(145deg,var(--deep-rose),#A84E68);border:none}
+.vcard.vf .vqm,.vcard.vf .vqtxt,.vcard.vf .vqname{color:rgba(255,255,255,.85)}
+.vcard.vf .vqloc{color:rgba(255,255,255,.5)}
+.vcard.vf .vqm{color:rgba(255,255,255,.25)}
+.vstars{display:flex;gap:3px;margin-bottom:.9rem}
+.star{width:11px;height:11px;fill:var(--gold)}
+.vqm{font-family:var(--serif);font-size:3rem;line-height:.75;color:var(--blush);margin-bottom:1rem;display:block}
+.vqtxt{font-family:var(--serif);font-style:italic;font-size:.98rem;color:var(--forest);line-height:1.65;margin-bottom:1.5rem}
+.vqname{font-size:.8rem;font-weight:500;color:var(--dark)}
+.vqloc{font-size:.7rem;color:var(--muted);margin-top:.18rem}
+/* FOOTER */
+footer{background:#1A1410;padding:3rem 4rem;border-top:1px solid rgba(201,151,63,.08)}
+.ftop{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1.75rem;margin-bottom:1.75rem;padding-bottom:1.75rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.fbrand{font-family:var(--serif);font-size:1.2rem;color:rgba(250,246,239,.45)}
+.fbrand small{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,151,63,.35);margin-top:.28rem}
+.flinks{display:flex;gap:1.75rem;flex-wrap:wrap}
+.flinks a{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,246,239,.22);text-decoration:none;transition:color .3s;cursor:pointer}
+.flinks a:hover{color:var(--gold)}
+.fbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.9rem}
+.fcopy{font-size:.65rem;color:rgba(250,246,239,.13)}
+.flegal{display:flex;gap:1.3rem}
+.flegal a{font-size:.63rem;color:rgba(250,246,239,.18);text-decoration:none;cursor:pointer;transition:color .3s}
+.flegal a:hover{color:var(--gold)}
+/* MODALS */
+.ov{display:none;position:fixed;inset:0;z-index:500;background:rgba(26,20,16,.88);backdrop-filter:blur(8px);justify-content:center;align-items:center;padding:1.4rem}
+.ov.open{display:flex}
+@keyframes mIn{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:none}}
+.ov.open .mbox,.ov.open .jmbox,.ov.open .obox{animation:mIn .28s ease}
+.mbox{background:var(--warm);border-radius:16px;max-width:680px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 40px 100px rgba(0,0,0,.45)}
+.mhead{position:sticky;top:0;background:var(--warm);padding:1.75rem 2.2rem 1.1rem;border-bottom:1px solid rgba(196,145,58,.1);display:flex;justify-content:space-between;align-items:center;z-index:2;border-radius:16px 16px 0 0}
+.mhead h3{font-family:var(--serif);font-size:1.45rem;font-weight:500;color:var(--forest)}
+.mclose{background:none;border:none;font-size:1.5rem;color:var(--muted);cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s;line-height:1}
+.mclose:hover{background:var(--cream)}
+.mbody{padding:1.75rem 2.2rem 2.2rem}
+.mbody h4{font-family:var(--serif);font-size:1rem;color:var(--forest);margin:1.5rem 0 .45rem;font-weight:500}
+.mbody h4:first-child{margin-top:0}
+.mbody p,.mbody li{font-size:.86rem;color:var(--muted);line-height:1.75;font-weight:300}
+.mbody ul{margin:.4rem 0 .7rem 1.4rem}
+.mbody li{margin-bottom:.3rem}
+.mbody p strong{color:var(--dark);font-weight:500}
+.mbadge{display:inline-flex;align-items:center;background:rgba(196,96,122,.07);border-radius:100px;padding:.3rem .8rem;margin-bottom:1.4rem}
+.mbadge span{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:var(--deep-rose)}
+.rbox{background:rgba(196,96,122,.06);border-left:3px solid var(--deep-rose);border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin:.9rem 0}
+.rbox p{color:var(--dark);font-weight:400;margin:0;font-size:.86rem}
+/* Order modal */
+.obox{background:var(--warm);border-radius:20px;max-width:600px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 40px 120px rgba(0,0,0,.5)}
+.ohead{padding:2rem 2.5rem 1.25rem;border-bottom:1px solid rgba(196,145,58,.1);display:flex;justify-content:space-between;align-items:center;background:var(--warm);border-radius:20px 20px 0 0;position:sticky;top:0;z-index:2}
+.ohead h3{font-family:var(--serif);font-size:1.45rem;font-weight:500;color:var(--forest)}
+.obody{padding:1.75rem 2.5rem 2.5rem}
+.opricebar{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;margin-bottom:1.75rem}
+.opcard{padding:1rem 1.1rem;border-radius:8px;background:var(--ivory);border:2px solid transparent;cursor:pointer;transition:border-color .3s,background .3s}
+.opcard.sel{border-color:var(--deep-rose);background:rgba(242,196,206,.08)}
+.opcard-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.opcard-price{font-family:var(--serif);font-size:1.3rem;font-weight:500;color:var(--dark)}
+.opcard-price.usd-show{display:block}.opcard-price.ksh-show{display:none}
+.opcard-sub{font-size:.7rem;color:var(--muted)}
+.oform{display:flex;flex-direction:column;gap:.8rem}
+.oform label{font-size:.75rem;color:var(--dark);font-weight:500;display:block;margin-bottom:.25rem}
+.oinput,.oselect{width:100%;padding:.78rem .95rem;border-radius:4px;border:1px solid rgba(196,145,58,.18);background:var(--ivory);font-size:.84rem;font-family:var(--sans);color:var(--dark);outline:none;transition:border-color .3s}
+.oinput:focus,.oselect:focus{border-color:var(--deep-rose)}
+.orow{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.osubmit{padding:.88rem;background:var(--deep-rose);color:#fff;border:none;border-radius:4px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer;font-family:var(--sans);transition:background .3s;margin-top:.4rem}
+.osubmit:hover{background:var(--mauve)}
+.onote{font-size:.68rem;color:var(--muted);text-align:center;margin-top:.5rem;line-height:1.5}
+/* Journal modal */
+.jmbox{background:var(--warm);border-radius:20px;max-width:820px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 40px 120px rgba(0,0,0,.5)}
+.jmhero{padding:2.8rem 2.8rem 2.2rem;position:relative;overflow:hidden;border-radius:20px 20px 0 0}
+.jmhero.hr{background:linear-gradient(135deg,#3A1C24,#5A2C3C)}
+.jmhero.hg{background:linear-gradient(135deg,#2A2010,#4A3818)}
+.jmhero.hs{background:linear-gradient(135deg,#1A2C1E,#2E4835)}
+.jmo{position:absolute;border-radius:50%;filter:blur(60px)}
+.jmo1{width:280px;height:280px;top:-70px;right:-50px}
+.hr .jmo1{background:rgba(232,160,176,.2)}.hg .jmo1{background:rgba(232,200,122,.2)}.hs .jmo1{background:rgba(107,143,113,.25)}
+.jmo2{width:180px;height:180px;bottom:-40px;left:-20px}
+.hr .jmo2{background:rgba(196,96,122,.15)}.hg .jmo2{background:rgba(201,151,63,.12)}.hs .jmo2{background:rgba(58,92,64,.2)}
+.jmclose{position:absolute;top:1.4rem;right:1.4rem;background:rgba(255,255,255,.12);border:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:rgba(255,255,255,.7);cursor:pointer;z-index:10;line-height:1;transition:background .2s}
+.jmclose:hover{background:rgba(255,255,255,.22)}
+.jmN{font-family:var(--serif);font-size:4.5rem;font-weight:400;color:rgba(255,255,255,.06);line-height:1;position:absolute;top:1.4rem;left:2.5rem}
+.jmtr{display:flex;align-items:center;gap:.65rem;margin-bottom:1.3rem;position:relative;z-index:2}
+.jmt{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:.3rem .8rem;border-radius:100px}
+.jmt-r{background:rgba(242,196,206,.2);color:var(--blush)}.jmt-g{background:rgba(232,200,122,.2);color:var(--gold-lt)}.jmt-s{background:rgba(155,184,159,.2);color:#9BB89F}
+.jmpg{font-size:.6rem;color:rgba(255,255,255,.28)}
+.jmtitle{font-family:var(--serif);font-size:clamp(1.9rem,4vw,2.6rem);font-weight:400;color:#fff;line-height:1.1;margin-bottom:.65rem;position:relative;z-index:2}
+.jmsub{font-size:.9rem;color:rgba(255,255,255,.48);font-weight:300;line-height:1.6;max-width:500px;position:relative;z-index:2}
+.jmsrefs{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.5rem;position:relative;z-index:2}
+.jmsr{font-size:.68rem;font-style:italic;color:rgba(255,255,255,.38);background:rgba(255,255,255,.07);padding:.28rem .7rem;border-radius:100px;border:1px solid rgba(255,255,255,.1)}
+.jmbody{padding:2.2rem 2.8rem}
+.jmlbl{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:1.1rem}
+.jmlbl.lr{color:var(--deep-rose)}.jmlbl.lg{color:var(--gold)}.jmlbl.ls{color:var(--forest)}
+.jmabout{font-size:.9rem;color:var(--muted);line-height:1.85;font-weight:300;margin-bottom:2.2rem}
+.jmabout p{margin-bottom:.7rem}
+.jmjrn{display:flex;flex-direction:column;margin-bottom:2.2rem;border-radius:12px;overflow:hidden;border:1px solid rgba(196,145,58,.1)}
+.jmstop{display:flex;gap:1.1rem;padding:1.1rem 1.4rem;background:var(--ivory);border-bottom:1px solid rgba(196,145,58,.07);transition:background .2s}
+.jmstop:last-child{border-bottom:none}
+.jmstop:hover{background:var(--cream)}
+.jmsn{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:500;margin-top:2px}
+.snr{background:rgba(242,196,206,.5);color:var(--deep-rose)}.sng{background:rgba(245,232,200,.7);color:#9B6A1C}.sns{background:rgba(216,234,217,.6);color:var(--forest)}
+.jsttitle{font-size:.88rem;font-weight:500;color:var(--dark);margin-bottom:.22rem}
+.jstref{font-size:.73rem;font-style:italic;color:var(--muted);margin-bottom:.35rem}
+.jstdesc{font-size:.78rem;color:var(--muted);line-height:1.6;font-weight:300}
+.jmdbox{background:var(--ivory);border-radius:10px;padding:1.5rem;margin-bottom:2.2rem;border:1px solid rgba(196,145,58,.1);position:relative;overflow:hidden}
+.jmdk{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin-bottom:.65rem}
+.jmdk.lr{color:var(--deep-rose)}.jmdk.lg{color:var(--gold)}.jmdk.ls{color:var(--forest)}
+.jmdq{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--dark);line-height:1.65}
+.jmdfade{position:absolute;bottom:0;left:0;right:0;height:55px;background:linear-gradient(transparent,var(--ivory))}
+.jmigrid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:2.2rem}
+.jmitem{display:flex;align-items:flex-start;gap:.65rem;padding:.9rem 1rem;background:var(--ivory);border-radius:8px}
+.jmii{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.jmii svg{width:12px;height:12px;stroke-width:2;fill:none}
+.jmii.wr{background:rgba(242,196,206,.2)}.jmii.wr svg{stroke:var(--deep-rose)}
+.jmii.wg{background:rgba(201,151,63,.15)}.jmii.wg svg{stroke:var(--gold)}
+.jmii.ws{background:rgba(107,143,113,.2)}.jmii.ws svg{stroke:var(--sage)}
+.jmitxt{font-size:.78rem;color:var(--muted);line-height:1.5;font-weight:300}
+.jmitxt strong{display:block;font-size:.8rem;color:var(--dark);font-weight:500;margin-bottom:.12rem}
+.jmcta{border-radius:12px;padding:1.75rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.9rem}
+.jmcta.cr{background:linear-gradient(135deg,#3A1C24,#5A2C3C)}.jmcta.cg{background:linear-gradient(135deg,#2A2010,#4A3818)}.jmcta.cs{background:linear-gradient(135deg,#1A2C1E,#2E4835)}
+.jmcta h4{font-family:var(--serif);font-size:1.2rem;font-style:italic;color:#fff}
+.jmcta p{font-size:.8rem;color:rgba(255,255,255,.45)}
+.jmcta-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+.jmctabtn{padding:.75rem 2rem;border-radius:4px;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer;border:none;font-family:var(--sans);transition:all .3s}
+.ctabr{background:var(--deep-rose);color:#fff}.ctabr:hover{background:var(--mauve)}
+.ctabg{background:var(--gold);color:#fff}.ctabg:hover{background:#B8862E}
+.ctabs{background:var(--forest);color:#fff}.ctabs:hover{background:#2E4835}
+.ctaout{background:transparent;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7)}.ctaout:hover{background:rgba(255,255,255,.1)}
+@keyframes rU{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.hcontent>*{animation:rU .9s ease both}
+.hcontent>*:nth-child(1){animation-delay:.1s}.hcontent>*:nth-child(2){animation-delay:.25s}.hcontent>*:nth-child(3){animation-delay:.45s}.hcontent>*:nth-child(4){animation-delay:.6s}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.rv.vis{opacity:1;transform:none}
+@media(max-width:960px){
+  nav{padding:1.1rem 1.4rem}.nlinks{display:none}
+  .hero{padding:7rem 1.4rem 4.5rem;display:block}
+  .hero-image-wrap{width:min(100%,520px);margin:3rem auto 0}
+  .hero-image-note{right:.5rem}
+  .hero,.welcome,.jsection,.phil,.pricing,.newsletter,.voices{padding-left:1.4rem;padding-right:1.4rem}
+  footer{padding:2.2rem 1.4rem}.hfloret{display:none}
+  .wrapinner,.philinner,.nlinner{grid-template-columns:1fr;gap:2.5rem}
+  .jgrid,.vgrid{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr 1fr}
+  .verse{padding:3.5rem 1.4rem}.ftop,.fbot{flex-direction:column}
+  .jmbody{padding:1.5rem 1.4rem}.jmhero{padding:2.2rem 1.4rem 1.75rem}
+  .jmigrid{grid-template-columns:1fr}.opricebar{grid-template-columns:1fr 1fr}.orow{grid-template-columns:1fr}
+  .obody{padding:1.5rem}
+}
+
+/* Journal card cover images */
+.jcover-wrap{position:relative;width:100%;padding-bottom:72%;overflow:hidden;border-radius:8px;margin-bottom:1.1rem;background:var(--ivory)}
+.jcover-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .5s ease}
+.jcard:hover .jcover-wrap img{transform:scale(1.04)}
+.jcover-badge{position:absolute;top:.6rem;left:.6rem;background:rgba(26,20,16,.55);backdrop-filter:blur(6px);border-radius:100px;padding:.22rem .65rem;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,252,248,.8);font-family:var(--sans)}
+.jcover-num{position:absolute;top:.6rem;right:.6rem;font-family:var(--serif);font-size:1.5rem;font-weight:400;color:rgba(255,255,255,.3);line-height:1}
+
+/* Digital download badge & button */
+.digi-badge{display:inline-flex;align-items:center;gap:.35rem;background:rgba(58,92,64,.12);border:1px solid rgba(58,92,64,.25);border-radius:100px;padding:.22rem .7rem;margin-bottom:.65rem;width:fit-content}
+.digi-badge svg{width:11px;height:11px;stroke:var(--forest);stroke-width:2;fill:none;flex-shrink:0}
+.digi-badge span{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--forest);font-weight:500}
+.jbtn-dl{flex:1;padding:.62rem .5rem;border-radius:3px;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:pointer;font-family:var(--sans);background:var(--forest);color:#fff;border:none;transition:background .3s;display:flex;align-items:center;justify-content:center;gap:.35rem}
+.jbtn-dl svg{width:12px;height:12px;stroke:#fff;stroke-width:2.2;fill:none;flex-shrink:0}
+.jbtn-dl:hover{background:#2E4835}
+/* Download confirmation toast */
+.dl-toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--forest);color:#fff;padding:.75rem 1.5rem;border-radius:100px;font-size:.78rem;font-family:var(--sans);font-weight:400;z-index:2000;transition:transform .35s ease,opacity .35s ease;opacity:0;pointer-events:none;display:flex;align-items:center;gap:.6rem}
+.dl-toast svg{width:14px;height:14px;stroke:#fff;stroke-width:2.2;fill:none}
+.dl-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+/* Digital available note in order modal */
+.digi-note{background:rgba(58,92,64,.08);border:1px solid rgba(58,92,64,.2);border-radius:8px;padding:.85rem 1rem;margin-bottom:1.25rem;font-size:.8rem;color:var(--forest);display:flex;align-items:flex-start;gap:.6rem}
+.digi-note svg{width:14px;height:14px;stroke:var(--forest);stroke-width:2;fill:none;flex-shrink:0;margin-top:1px}
+
+/* ════════ LIVE CHAT WIDGET ════════ */
+.chat-fab{position:fixed;bottom:2rem;right:2rem;z-index:400;display:flex;flex-direction:column;align-items:flex-end;gap:.75rem}
+.chat-btn{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--deep-rose),#A84E68);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(196,96,122,.45);transition:transform .3s,box-shadow .3s;position:relative}
+.chat-btn:hover{transform:scale(1.08);box-shadow:0 12px 36px rgba(196,96,122,.55)}
+.chat-btn svg{width:26px;height:26px;stroke:#fff;stroke-width:2;fill:none;transition:opacity .2s}
+.chat-btn .icon-chat{opacity:1}.chat-btn .icon-close{opacity:0;position:absolute}
+.chat-btn.open .icon-chat{opacity:0}.chat-btn.open .icon-close{opacity:1}
+.chat-notif{position:absolute;top:-3px;right:-3px;width:18px;height:18px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff;font-weight:600;font-family:var(--sans);border:2px solid var(--warm);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+.chat-bubble-hint{background:var(--dark);color:var(--warm);font-size:.78rem;font-family:var(--sans);padding:.6rem 1rem;border-radius:12px 12px 2px 12px;box-shadow:0 4px 16px rgba(0,0,0,.2);white-space:nowrap;animation:fadeInUp .4s ease;pointer-events:none}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.chat-window{position:fixed;bottom:6rem;right:2rem;width:360px;max-height:560px;background:var(--warm);border-radius:20px;box-shadow:0 20px 60px rgba(42,31,26,.22);z-index:401;display:flex;flex-direction:column;overflow:hidden;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .3s ease;transform:scale(.85) translateY(20px);opacity:0;pointer-events:none}
+.chat-window.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+.chat-win-head{background:linear-gradient(135deg,#3A1C24,#5A2C3C);padding:1.25rem 1.4rem;display:flex;align-items:center;gap:.9rem;position:relative;flex-shrink:0}
+.chat-avatar{width:42px;height:42px;border-radius:50%;background:rgba(242,196,206,.2);border:2px solid rgba(242,196,206,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chat-avatar svg{width:20px;height:20px;stroke:var(--blush);stroke-width:1.5;fill:none}
+.chat-head-info{flex:1}
+.chat-head-name{font-size:.9rem;font-weight:500;color:#fff;font-family:var(--serif)}
+.chat-head-status{display:flex;align-items:center;gap:.35rem;margin-top:.15rem}
+.chat-status-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:pulse-dot 2s ease-in-out infinite}
+.chat-status-txt{font-size:.65rem;color:rgba(255,255,255,.5);letter-spacing:.05em}
+.chat-head-close{background:rgba(255,255,255,.1);border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.chat-head-close:hover{background:rgba(255,255,255,.2)}
+.chat-head-close svg{width:14px;height:14px;stroke:#fff;stroke-width:2;fill:none}
+.chat-messages{flex:1;overflow-y:auto;padding:1.1rem;display:flex;flex-direction:column;gap:.75rem;scroll-behavior:smooth}
+.chat-messages::-webkit-scrollbar{width:4px}
+.chat-messages::-webkit-scrollbar-thumb{background:rgba(196,96,122,.2);border-radius:2px}
+.chat-msg{display:flex;flex-direction:column;max-width:86%}
+.chat-msg.bot{align-self:flex-start}
+.chat-msg.user{align-self:flex-end}
+.chat-msg-bubble{padding:.72rem .95rem;border-radius:14px;font-size:.82rem;line-height:1.55;font-family:var(--sans)}
+.chat-msg.bot .chat-msg-bubble{background:var(--ivory);color:var(--dark);border-radius:4px 14px 14px 14px;border:1px solid rgba(196,145,58,.1)}
+.chat-msg.user .chat-msg-bubble{background:linear-gradient(135deg,var(--deep-rose),#A84E68);color:#fff;border-radius:14px 14px 4px 14px}
+.chat-msg-time{font-size:.6rem;color:var(--muted);margin-top:.25rem;padding:0 .2rem}
+.chat-msg.user .chat-msg-time{text-align:right}
+.chat-quick-replies{display:flex;flex-wrap:wrap;gap:.45rem;padding:.25rem 1.1rem .75rem}
+.chat-qr{background:transparent;border:1px solid rgba(196,96,122,.3);color:var(--deep-rose);font-size:.72rem;padding:.38rem .8rem;border-radius:100px;cursor:pointer;font-family:var(--sans);transition:all .25s;white-space:nowrap}
+.chat-qr:hover{background:var(--deep-rose);color:#fff;border-color:var(--deep-rose)}
+.chat-input-row{display:flex;gap:.5rem;padding:.9rem 1rem;border-top:1px solid rgba(196,145,58,.1);flex-shrink:0;align-items:flex-end;background:var(--warm)}
+.chat-input{flex:1;padding:.65rem .9rem;border:1px solid rgba(196,145,58,.18);border-radius:20px;font-size:.82rem;font-family:var(--sans);color:var(--dark);background:var(--ivory);outline:none;resize:none;max-height:80px;overflow-y:auto;transition:border-color .25s;line-height:1.45}
+.chat-input:focus{border-color:var(--deep-rose)}
+.chat-input::placeholder{color:var(--muted)}
+.chat-send{width:36px;height:36px;border-radius:50%;background:var(--deep-rose);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .25s,transform .2s}
+.chat-send:hover{background:var(--mauve);transform:scale(1.08)}
+.chat-send svg{width:15px;height:15px;stroke:#fff;stroke-width:2.5;fill:none}
+.chat-typing{display:flex;align-items:center;gap:.35rem;padding:.5rem .95rem;background:var(--ivory);border-radius:4px 14px 14px 14px;border:1px solid rgba(196,145,58,.1);width:fit-content}
+.chat-typing span{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:typingBounce 1.2s ease-in-out infinite}
+.chat-typing span:nth-child(2){animation-delay:.2s}
+.chat-typing span:nth-child(3){animation-delay:.4s}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.chat-sent-confirm{font-size:.72rem;color:var(--sage);text-align:center;padding:.4rem;font-style:italic}
+@media(max-width:420px){.chat-window{width:calc(100vw - 2rem);right:1rem;bottom:5.5rem}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="#" class="nlogo">It's in the Core</a>
+  <ul class="nlinks">
+    <li><a href="#journals">Journals</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#philosophy">Our Approach</a></li>
+    <li><a href="#newsletter">Newsletter</a></li>
+    <li><a href="#voices">Community</a></li>
+  </ul>
+  <a href="#pricing" class="ncta">Order Now</a>
+</nav>
+
+<section class="hero">
+  <div class="orbs"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+  <div class="hfloret"><svg viewBox="0 0 400 400" fill="none"><circle cx="200" cy="200" r="180" stroke="rgba(242,196,206,1)" stroke-width=".5"/><circle cx="200" cy="200" r="140" stroke="rgba(201,151,63,1)" stroke-width=".5"/><circle cx="200" cy="200" r="100" stroke="rgba(242,196,206,1)" stroke-width=".5"/><circle cx="200" cy="200" r="60" stroke="rgba(201,151,63,1)" stroke-width=".5"/><line x1="200" y1="20" x2="200" y2="380" stroke="rgba(242,196,206,.7)" stroke-width=".5"/><line x1="20" y1="200" x2="380" y2="200" stroke="rgba(242,196,206,.7)" stroke-width=".5"/><line x1="73" y1="73" x2="327" y2="327" stroke="rgba(201,151,63,.5)" stroke-width=".5"/><line x1="327" y1="73" x2="73" y2="327" stroke="rgba(201,151,63,.5)" stroke-width=".5"/><circle cx="200" cy="200" r="8" fill="rgba(201,151,63,.4)"/></svg></div>
+  <div class="hcontent">
+    <div class="heyebrow"><div class="pip"></div><span>A conversation in a book</span><div class="pip"></div></div>
+    <h1 class="h1">This is not<br><i>just a journal.</i><b>It will confront you.</b></h1>
+    <p class="hsub">It's in the Core was created for the woman who is tired of beautiful words that leave her exactly where she started. These pages ask the hard questions, speak directly to real life, anchor you in Scripture, and give you something to do with what you discover.</p>
+    <div class="hbtns">
+      <a href="#journals" class="btn-primary">Meet the Journals</a>
+      <a href="#philosophy" class="btn-ghost">Why They Are Different</a>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    <div class="hero-image-frame">
+      <img src="images/image-1.png" alt="Woman reading the Guarded Heart journal at a warm wooden desk with tea" class="hero-image">
+      <div class="hero-image-note"><span>Guarded Heart</span><small>Open the conversation.</small></div>
+    </div>
+  </div>
+  <div class="scrollhint"><span>Discover</span><div class="sline"></div></div>
+</section>
+
+<section class="welcome" id="about">
+  <div class="wrapinner">
+    <div class="rv">
+      <div class="wbadge"><div class="wbline"></div><div class="wbtxt">Welcome, Sister</div></div>
+      <h2>You were made for <em>more</em> than pretty pages.</h2>
+      <p>These are not journals you buy, admire, and forget on a nightstand. They are written to become a conversation you cannot easily walk away from.</p>
+      <p>Expect questions that get uncomfortably specific. Expect Scripture that refuses to stay abstract. Expect moments where you have to tell yourself the truth before you can decide what comes next.</p>
+      <p>It's in the Core is for the woman who wants transformation, not another temporary feeling. The goal is not simply to fill pages. The goal is to leave the page different.</p>
+    </div>
+    <div class="wright rv">
+      <div class="wcard"><div class="wicon wi-r"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div><div><div class="wctitle">Beyond devotionals</div><div class="wcdesc">Circumstance-specific, Scripture-anchored, and directive. Built for the woman in the middle of it.</div></div></div>
+      <div class="wcard"><div class="wicon wi-g"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div><div><div class="wctitle">Written for your context</div><div class="wcdesc">Crafted by and for Christian Women, honouring the depth of your faith, the complexity of your life, and the calling within you.</div></div></div>
+      <div class="wcard"><div class="wicon wi-s"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><div class="wctitle">Built for community</div><div class="wcdesc">Journal alone or gather your circle, every title is designed to spark honest conversations and collective growth.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="verse">
+  <div class="vinner rv">
+    <div class="vdeco"><span>Anchored in Scripture</span></div>
+    <p class="vquote">"For the word of God is alive and active. Sharper than any double-edged sword, it judges the thoughts and attitudes of the heart."</p>
+    <div class="vref">Hebrews 4:12</div>
+  </div>
+</section>
+
+<section class="jsection" id="journals">
+  <div class="shead rv">
+    <div class="stag"><span>The Collection</span></div>
+    <h2>Six conversations. <em>Six places you may need to be challenged.</em></h2>
+    <p>Read a little before you buy. Each journal gives you a glimpse of the questions, truths, and directives waiting inside. If a preview hits a nerve, that is probably the one to open next.</p>
+  </div>
+  <div class="jgrid">
+<div class="jcard rv"><div class="jtop tr"></div><div class="jcover-wrap"><img src="images/image-2.jpg" alt="When the Ground Shifts" loading="lazy"><div class="jcover-num">01</div></div><div class="digi-badge"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Digital available</span></div><div class="jmeta"><span class="jtag tag-r">Grief &amp; Transition</span><span class="jpgs">· 25 pages</span></div><div class="jtitle">When the Ground Shifts</div><div class="jdesc">What do you do when the life you recognized disappears? This journal will not rush your grief. It will make you face what changed, hear what God is saying, and take the next honest step.</div><div class="jsref cr">Psalms 34:18 · Matthew 5:4 · 2 Corinthians 1:3</div><div class="jbtns" style="flex-wrap:wrap;gap:.5rem"><a href="https://payhip.com/b/Zmsor" target="_blank" rel="noopener" class="jbtn-dl" style="width:100%;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:.4rem"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Buy Digital</a><button class="jbtn-preview r" style="flex:1;min-width:100px" onclick="openJ('j1')">Preview</button><button class="jbtn-order r" style="flex:1;min-width:100px" onclick="openOrder('When the Ground Shifts')">Order Physical</button></div></div>
+<div class="jcard rv"><div class="jtop tg"></div><div class="jcover-wrap"><img src="images/image-3.jpg" alt="She Who Decides" loading="lazy"><div class="jcover-num">02</div></div><div class="digi-badge"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Digital available</span></div><div class="jmeta"><span class="jtag tag-g">Purpose &amp; Calling</span><span class="jpgs">· 25 pages</span></div><div class="jtitle">She Who Decides</div><div class="jdesc">Stop asking everyone else what you should do. This journal takes you into the decision you have been avoiding and forces clarity around your calling, your motives, your fear, and your next move.</div><div class="jsref cg">Jeremiah 29:11 · Galatians 1:15-16 · Ephesians 2:10</div><div class="jbtns" style="flex-wrap:wrap;gap:.5rem"><a href="https://payhip.com/b/CBmXO" target="_blank" rel="noopener" class="jbtn-dl" style="width:100%;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:.4rem"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Buy Digital</a><button class="jbtn-preview g" style="flex:1;min-width:100px" onclick="openJ('j2')">Preview</button><button class="jbtn-order g" style="flex:1;min-width:100px" onclick="openOrder('She Who Decides')">Order Physical</button></div></div>
+<div class="jcard rv"><div class="jtop ts"></div><div class="jcover-wrap"><img src="images/image-4.jpg" alt="Loved & Leading" loading="lazy"><div class="jcover-num">03</div></div><div class="digi-badge"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Digital available</span></div><div class="jmeta"><span class="jtag tag-s">Leadership &amp; Home</span><span class="jpgs">· 25 pages</span></div><div class="jtitle">Loved &amp; Leading</div><div class="jdesc">You cannot lead everyone well while abandoning yourself. This journal gets underneath the roles you carry and asks what kind of woman, home, leader, and legacy you are actually building.</div><div class="jsref cs">Proverbs 14:1 · Proverbs 24:3-4 · Genesis 2:18 · Proverbs 3:5-6</div><div class="jbtns" style="flex-wrap:wrap;gap:.5rem"><a href="https://payhip.com/b/6PVI4" target="_blank" rel="noopener" class="jbtn-dl" style="width:100%;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:.4rem"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Buy Digital</a><button class="jbtn-preview s" style="flex:1;min-width:100px" onclick="openJ('j3')">Preview</button><button class="jbtn-order s" style="flex:1;min-width:100px" onclick="openOrder('Loved &amp; Leading')">Order Physical</button></div></div>
+<div class="jcard rv"><div class="jtop tr"></div><div class="jcover-wrap"><img src="images/image-5.jpg" alt="Guarded Heart" loading="lazy"><div class="jcover-num">04</div></div><div class="digi-badge"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Digital available</span></div><div class="jmeta"><span class="jtag tag-r">Healing &amp; Identity</span><span class="jpgs">· 25 pages</span></div><div class="jtitle">Guarded Heart</div><div class="jdesc">Who gets access to you, and why? These pages confront the patterns that drain your peace, expose what you have normalized, and teach you to guard your heart without becoming hard.</div><div class="jsref cr">Proverbs 4:23 · Isaiah 26:3 · Colossians 3:15 · 1 Peter 5:7</div><div class="jbtns" style="flex-wrap:wrap;gap:.5rem"><a href="https://payhip.com/b/dBrRL" target="_blank" rel="noopener" class="jbtn-dl" style="width:100%;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:.4rem"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Buy Digital</a><button class="jbtn-preview r" style="flex:1;min-width:100px" onclick="openJ('j4')">Preview</button><button class="jbtn-order r" style="flex:1;min-width:100px" onclick="openOrder('Guarded Heart')">Order Physical</button></div></div>
+<div class="jcard rv"><div class="jtop tg"></div><div class="jcover-wrap"><img src="images/image-6.jpg" alt="The Faithful Builder" loading="lazy"><div class="jcover-num">05</div></div><div class="digi-badge"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Digital available</span></div><div class="jmeta"><span class="jtag tag-g">Faith &amp; Business</span><span class="jpgs">· 25 pages</span></div><div class="jtitle">The Faithful Builder</div><div class="jdesc">Your vision needs more than ambition. This journal challenges how you are building, what you are building for, what you are willing to sacrifice, and whether the foundation can actually carry the legacy you want.</div><div class="jsref cg">Hebrews 3:4 · Proverbs 16:3 · Galatians 6:9</div><div class="jbtns" style="flex-wrap:wrap;gap:.5rem"><a href="https://payhip.com/b/60L8z" target="_blank" rel="noopener" class="jbtn-dl" style="width:100%;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:.4rem"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Buy Digital</a><button class="jbtn-preview g" style="flex:1;min-width:100px" onclick="openJ('j5')">Preview</button><button class="jbtn-order g" style="flex:1;min-width:100px" onclick="openOrder('The Faithful Builder')">Order Physical</button></div></div>
+<div class="jcard rv"><div class="jtop ts"></div><div class="jcover-wrap"><img src="images/image-7.jpg" alt="Rooted & Rising" loading="lazy"><div class="jcover-num">06</div></div><div class="digi-badge"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>Digital available</span></div><div class="jmeta"><span class="jtag tag-s">Identity &amp; Community</span><span class="jpgs">· 25 pages</span></div><div class="jtitle">Rooted &amp; Rising</div><div class="jdesc">Who are you when nobody is applauding you? This journal dismantles the identities you inherited, absorbed, or built to survive and brings you back to what God says is true about you.</div><div class="jsref cs">2 Corinthians 5:17 · Galatians 3:26 · 1 Peter 2:9 · Galatians 2:20</div><div class="jbtns" style="flex-wrap:wrap;gap:.5rem"><a href="https://payhip.com/b/0WYPl" target="_blank" rel="noopener" class="jbtn-dl" style="width:100%;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:.4rem"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Buy Digital</a><button class="jbtn-preview s" style="flex:1;min-width:100px" onclick="openJ('j6')">Preview</button><button class="jbtn-order s" style="flex:1;min-width:100px" onclick="openOrder('Rooted &amp; Rising')">Order Physical</button></div></div>
+  </div>
+</section>
+
+<section class="phil" id="philosophy">
+  <div class="philinner">
+    <div class="rv">
+      <div class="wbadge"><div class="wbline"></div><div class="wbtxt">How It Works</div></div>
+      <h2>Inspired is good. <em>Activated</em> is better.</h2>
+      <p>Every journal follows a structure built not around chapters, but around movement, taking you from where you are into where God is calling you.</p>
+      <div class="psteps">
+        <div class="pstep"><div class="pnum p1">01</div><div><div class="ptitle">Locate Yourself</div><div class="pdesc">Honest, gentle prompts to name the season you are truly in, without pretending.</div></div></div>
+        <div class="pstep"><div class="pnum p2">02</div><div><div class="ptitle">Anchor in Scripture</div><div class="pdesc">Carefully curated passages that speak directly to your circumstance, not platitudes.</div></div></div>
+        <div class="pstep"><div class="pnum p3">03</div><div><div class="ptitle">Receive a Directive</div><div class="pdesc">Practical, faith driven instructions for your very next step. Concrete. Clear. Possible.</div></div></div>
+        <div class="pstep"><div class="pnum p4">04</div><div><div class="ptitle">Walk It Out</div><div class="pdesc">Accountability pages to track how God is moving as you act on what He has said.</div></div></div>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="pqw">
+        <span class="pqmark">&ldquo;</span>
+        <p class="pqtext">God doesn't just stir your heart, He activates your hands. It's in the Core is for the woman ready to move.</p>
+        <div class="pqname">The Core Philosophy</div>
+        <div class="pmcards">
+          <div class="pmcard"><div class="pmdot pmd-r"></div><div class="pmtxt"><strong>Not just reflection</strong>Direction for the woman in the middle of it.</div></div>
+          <div class="pmcard"><div class="pmdot pmd-g"></div><div class="pmtxt"><strong>Not generic wisdom</strong>Scripture that meets your specific circumstance.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pricing" id="pricing">
+  <div class="pricinginner">
+    <div class="shead rv" style="margin-bottom:0">
+      <div class="stag" style="justify-content:center"><span>Pricing</span></div>
+      <h2 style="font-family:var(--serif);color:#fff;font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:400;line-height:1.18;margin-bottom:.9rem">Choose your <em style="font-style:italic;color:var(--blush)">format</em></h2>
+      <p style="color:rgba(250,246,239,.45);font-size:.88rem">Every journal. Every format. Available now for delivery in Kenya and the USA.</p>
+    </div>
+    <div class="ptoggle rv" id="currencyToggle">
+      <button class="ptbtn active" id="btn-usd" onclick="setCurrency('usd')">USD $</button>
+      <button class="ptbtn" id="btn-ksh" onclick="setCurrency('ksh')">KSh</button>
+    </div>
+    <div class="pgrid rv">
+      <div class="pcard">
+        <div class="pcard-icon pi-rose"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="pcard-label pl-r">Digital</div>
+        <h3>Download</h3>
+        <div class="pcard-price pp-r"><span class="usd-p">$24–$29</span><span class="ksh-p" style="display:none">KSh 1,800–2,200</span></div>
+        <div class="pcard-range">Per journal · PDF instant delivery</div>
+        <div class="pcard-feats">
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Instant PDF download</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Print at home or at a print shop</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full 25-page guided content</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>All scripture &amp; directive pages</div>
+          <div class="pfeat off"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Physical copy not included</div>
+        </div>
+        <button class="pcard-btn pb-r" onclick="openOrder('Your Chosen Journal, Digital')">Order Digital</button>
+      </div>
+      <div class="pcard pc-featured">
+        <div class="pcard-icon pi-gold"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="pcard-label pl-g">Physical</div>
+        <h3>Printed Copy</h3>
+        <div class="pcard-price pp-g"><span class="usd-p">$32–$38</span><span class="ksh-p" style="display:none">KSh 3,500–4,200</span></div>
+        <div class="pcard-range">Per journal · Shipped to your door</div>
+        <div class="pcard-feats">
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Beautiful printed journal</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Quality paper for writing</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Shipped Kenya &amp; USA</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full 25-page guided content</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Digital PDF also included</div>
+        </div>
+        <button class="pcard-btn pb-g" onclick="openOrder('Your Chosen Journal, Physical')">Order Physical</button>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon pi-sage"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <div class="pcard-label pl-s">Bundle</div>
+        <h3>All 6 Journals</h3>
+        <div class="pcard-price pp-s"><span class="usd-p">$44–$52</span><span class="ksh-p" style="display:none">KSh 4,800–5,900</span></div>
+        <div class="pcard-range">Complete collection · Best value</div>
+        <div class="pcard-feats">
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>All 6 journals in one order</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Choice of digital or physical</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Every topic &amp; season covered</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Significant bundle savings</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Priority shipping included</div>
+        </div>
+        <button class="pcard-btn pb-s" onclick="openOrder('Full Collection Bundle, All 6 Journals')">Order Bundle</button>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon pi-prem"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="pcard-label pl-p">Premium Gift</div>
+        <h3>Gift Set</h3>
+        <div class="pcard-price pp-p"><span class="usd-p">$42–$55</span><span class="ksh-p" style="display:none">KSh 5,800–6,500</span></div>
+        <div class="pcard-range">For someone special · Gift-ready</div>
+        <div class="pcard-feats">
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Gift-wrapped presentation</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Personalised gift message</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Choice of 1–3 journals</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Premium packaging</div>
+          <div class="pfeat on"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Ships Kenya &amp; USA</div>
+        </div>
+        <button class="pcard-btn pb-p" onclick="openOrder('Premium Gift Set')">Order Gift Set</button>
+      </div>
+    </div>
+    <p class="rv" style="text-align:center;margin-top:2rem;font-size:.78rem;color:rgba(250,246,239,.25)">All prices in USD or Kenyan Shillings. Exact price within range depends on journal selection and location. All sales final, no refunds. Questions? <a href="mailto:builderhercore@pm.me" style="color:var(--gold-lt);text-decoration:none">builderhercore@pm.me</a></p>
+  </div>
+</section>
+
+<section class="newsletter" id="newsletter">
+  <div class="nlinner">
+    <div class="rv">
+      <div class="nltag"><span>The Directive Newsletter</span></div>
+      <h2>This is not your <em>average</em> newsletter.</h2>
+      <p>The Directive is a highly interactive weekly publication that lands in your inbox every Monday and moves you into the week with God's word already active in your hands.</p>
+      <p>This is not a devotional roundup. Not a curated link list. It is a Scripture rooted directive crafted for your specific season, with prompts, challenges, and community built right inside it.</p>
+      <div class="nlfeats">
+        <div class="nlfeat"><div class="nlfeat-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div class="nlfeat-title">Weekly Scripture Directive</div><div class="nlfeat-desc">One passage. One directive. One thing to do before Sunday. Every Monday without fail.</div></div></div>
+        <div class="nlfeat"><div class="nlfeat-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div><div class="nlfeat-title">Community Challenge</div><div class="nlfeat-desc">A shared weekly challenge sent to the whole community, with a space to share what God did.</div></div></div>
+        <div class="nlfeat"><div class="nlfeat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="nlfeat-title">Reader Poll &amp; Question</div><div class="nlfeat-desc">Every issue includes a question for you to respond to, your answers shape the following week's content.</div></div></div>
+        <div class="nlfeat"><div class="nlfeat-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="nlfeat-title">Subscriber Perks</div><div class="nlfeat-desc">Early access to new journals, exclusive discounts, and behind-the-scenes content for subscribers only.</div></div></div>
+      </div>
+      <div class="nl-issues">
+        <span class="nl-issue-badge">Weekly Directive</span>
+        <span class="nl-issue-badge">Community Challenge</span>
+        <span class="nl-issue-badge">Reader Q&amp;A</span>
+        <span class="nl-issue-badge">Scripture Study</span>
+        <span class="nl-issue-badge">Member Spotlight</span>
+        <span class="nl-issue-badge">Subscriber Discounts</span>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="nlright">
+        <h3>Join The Directive</h3>
+        <p>Tell us about your season and we'll make sure the first issue speaks directly to where you are.</p>
+        <form class="nlform" action="https://formsubmit.co/builderhercore@pm.me" method="POST">
+          <input type="hidden" name="_subject" value="New Directive Newsletter Subscriber, It's in the Core">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <div><label>Your name</label><input type="text" name="name" class="nlinput" placeholder="First name" required></div>
+          <div><label>Email address</label><input type="email" name="email" class="nlinput" placeholder="your@email.com" required></div>
+          <div><label>Which journal speaks to your current season?</label>
+            <select name="journal_interest" class="nlselect">
+              <option value="">Choose a journal...</option>
+              <option>When the Ground Shifts (Grief &amp; Transition)</option>
+              <option>She Who Decides (Purpose &amp; Calling)</option>
+              <option>Loved &amp; Leading (Leadership &amp; Home)</option>
+              <option>Guarded Heart (Healing &amp; Identity)</option>
+              <option>The Faithful Builder (Faith &amp; Business)</option>
+              <option>Rooted &amp; Rising (Identity &amp; Community)</option>
+              <option>All of them, I need all 6</option>
+            </select>
+          </div>
+          <div><label>What are you navigating right now?</label>
+            <select name="current_season" class="nlselect">
+              <option value="">Describe your season...</option>
+              <option>A major decision or crossroads</option>
+              <option>Grief, loss, or unexpected change</option>
+              <option>Building something new</option>
+              <option>Healing &amp; finding peace</option>
+              <option>Discovering my identity in Christ</option>
+              <option>Leading at home or at work</option>
+              <option>Just here to grow</option>
+            </select>
+          </div>
+          <button type="submit" class="nlsubmit">Subscribe to The Directive</button>
+          <p class="nlnote">One email per week. No noise. Unsubscribe any time.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="voices" id="voices">
+  <div class="vinner">
+    <div class="rv">
+      <div class="stag" style="justify-content:flex-start"><span>Community Voices</span></div>
+      <h2 style="font-family:var(--serif);font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:400;color:var(--forest);line-height:1.18;max-width:400px">Women are <em style="font-style:italic;color:var(--deep-rose)">responding.</em></h2>
+    </div>
+    <div class="vgrid">
+      <div class="vcard vf rv"><div class="vstars"><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><span class="vqm">&ldquo;</span><p class="vqtxt">I've done devotionals for years and always felt inspired, but still stuck. This was the first journal that actually told me what to do with what I was reading. Everything changed.</p><div class="vqname">Wanjiru M.</div><div class="vqloc">Nairobi, Kenya</div></div>
+      <div class="vcard rv"><div class="vstars"><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><span class="vqm">&ldquo;</span><p class="vqtxt">Finally, a journal that speaks my language, my reality, and my faith all at once. This is exactly what I needed to take my next step with God.</p><div class="vqname">Achieng O.</div><div class="vqloc">Kisumu, Kenya</div></div>
+      <div class="vcard rv"><div class="vstars"><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><span class="vqm">&ldquo;</span><p class="vqtxt">I gifted this to my entire Bible study group. The conversations we have now are unlike anything we've experienced. It unlocks something real in every woman.</p><div class="vqname">Grace N.</div><div class="vqloc">Mombasa, Kenya</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ftop">
+    <div class="fbrand">It's in the Core<small>Christian Journals for Women &nbsp;&middot;&nbsp; Kenya &amp; USA &nbsp;&middot;&nbsp; inthecore.online</small></div>
+    <div class="flinks">
+      <a href="#journals">Journals</a>
+      <a href="#philosophy">Our Approach</a>
+      <a href="#newsletter">Newsletter</a>
+      <a href="#voices">Community</a>
+      <a href="mailto:builderhercore@pm.me">Contact</a>
+    </div>
+  </div>
+  <div class="fbot">
+    <div class="fcopy">&copy; 2026 It&rsquo;s in the Core. All Rights Reserved.</div>
+    <div class="flegal">
+      <a onclick="openM('privacy')">Privacy Policy</a>
+      <a onclick="openM('terms')">Terms &amp; Conditions</a>
+    </div>
+  </div>
+</footer>
+<!-- ORDER MODAL -->
+<div class="ov" id="ov-order" onclick="if(event.target===this){closeOrder()}">
+ <div class="obox">
+  <div class="ohead"><h3>Place Your Order</h3><button class="mclose" onclick="closeOrder()">&times;</button></div>
+  <div class="obody">
+   <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.5rem;font-weight:300;line-height:1.6">Select your preferred format and currency, then complete the form below. We will confirm your order within 24 hours at <strong style="color:var(--dark)">builderhercore@pm.me</strong>.</p>
+   <div style="font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--deep-rose);font-weight:600;margin-bottom:.85rem">Choose Format &amp; See Pricing</div>
+   <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem">
+     <button class="ptbtn active" id="obtn-usd" onclick="setOrderCurrency('usd')" style="background:var(--gold);color:#fff;padding:.4rem 1.1rem;border-radius:100px;border:none;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:var(--sans)">USD $</button>
+     <button class="ptbtn" id="obtn-ksh" onclick="setOrderCurrency('ksh')" style="background:rgba(201,151,63,.12);color:var(--gold);padding:.4rem 1.1rem;border-radius:100px;border:1px solid rgba(201,151,63,.25);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:var(--sans)">KSh</button>
+   </div>
+   <div class="opricebar">
+     <div class="opcard sel" id="op-digital" onclick="selectFormat('digital',this)">
+       <div class="opcard-label">Digital PDF</div>
+       <div class="opcard-price usd-show" id="op-digital-usd">$24–$29</div>
+       <div class="opcard-price ksh-show" id="op-digital-ksh">KSh 1,800–2,200</div>
+       <div class="opcard-sub">Instant download</div>
+     </div>
+     <div class="opcard" id="op-physical" onclick="selectFormat('physical',this)">
+       <div class="opcard-label">Physical Copy</div>
+       <div class="opcard-price usd-show" id="op-physical-usd">$32–$38</div>
+       <div class="opcard-price ksh-show" id="op-physical-ksh">KSh 3,500–4,200</div>
+       <div class="opcard-sub">Shipped to you</div>
+     </div>
+     <div class="opcard" id="op-bundle" onclick="selectFormat('bundle',this)">
+       <div class="opcard-label">Bundle All 6</div>
+       <div class="opcard-price usd-show" id="op-bundle-usd">$44–$52</div>
+       <div class="opcard-price ksh-show" id="op-bundle-ksh">KSh 4,800–5,900</div>
+       <div class="opcard-sub">Complete collection</div>
+     </div>
+     <div class="opcard" id="op-gift" onclick="selectFormat('gift',this)">
+       <div class="opcard-label">Premium Gift</div>
+       <div class="opcard-price usd-show" id="op-gift-usd">$42–$55</div>
+       <div class="opcard-price ksh-show" id="op-gift-ksh">KSh 5,800–6,500</div>
+       <div class="opcard-sub">Gift-wrapped &amp; personalised</div>
+     </div>
+   </div>
+   <form class="oform" action="https://formsubmit.co/builderhercore@pm.me" method="POST" id="orderForm">
+     <input type="hidden" name="_subject" value="New Journal Order, It's in the Core">
+     <input type="hidden" name="_captcha" value="false">
+     <input type="hidden" name="_template" value="table">
+     <input type="hidden" name="selected_format" id="hidden-format" value="Digital PDF">
+     <input type="hidden" name="currency" id="hidden-currency" value="USD">
+     <div class="orow">
+       <div><label>First name</label><input type="text" name="first_name" class="oinput" placeholder="Grace" required></div>
+       <div><label>Last name</label><input type="text" name="last_name" class="oinput" placeholder="Mwangi" required></div>
+     </div>
+     <div><label>Email address</label><input type="email" name="email" class="oinput" placeholder="your@email.com" required></div>
+     <div><label>Which journal(s) are you ordering?</label>
+       <select name="journal_title" class="oinput" id="order-journal-select">
+         <option>When the Ground Shifts</option>
+         <option>She Who Decides</option>
+         <option>Loved &amp; Leading</option>
+         <option>Guarded Heart</option>
+         <option>The Faithful Builder</option>
+         <option>Rooted &amp; Rising</option>
+         <option>Full Bundle, All 6 Journals</option>
+         <option>Premium Gift Set</option>
+       </select>
+     </div>
+     <div><label>Delivery location</label>
+       <select name="location" class="oinput">
+         <option>Kenya</option>
+         <option>United States</option>
+         <option>Other (specify in notes)</option>
+       </select>
+     </div>
+     <div><label>Delivery address (for physical orders)</label><input type="text" name="address" class="oinput" placeholder="Street, City, Country, or 'Digital only'"></div>
+     <div><label>Notes or gift message (optional)</label><input type="text" name="notes" class="oinput" placeholder="Personalisation, gift message, questions..."></div>
+     <button type="submit" class="osubmit">Continue to Payment (PayPal)</button>
+     <p class="onote">You'll be sent to PayPal to complete payment securely. We'll also email you an order confirmation. All sales are final, no refunds. &nbsp;<strong>builderhercore@pm.me</strong></p>
+   </form>
+   <script>
+   document.getElementById('orderForm').addEventListener('submit',function(e){
+     e.preventDefault();
+     const form=this;
+     fetch(form.action,{method:'POST',body:new FormData(form),mode:'no-cors'}).catch(function(){});
+     goToPaypal(form);
+   });
+   </script>
+  </div>
+ </div>
+</div>
+
+<!-- JOURNAL MODAL 1 -->
+<div class="ov" id="ov-j1" onclick="if(event.target===this){closeJ('j1')}">
+ <div class="jmbox">
+  <div class="jmhero hr"><div class="jmo jmo1"></div><div class="jmo jmo2"></div>
+   <button class="jmclose" onclick="closeJ('j1')">&times;</button>
+   <div class="jmN">01</div>
+   <div class="jmtr"><span class="jmt jmt-r">Grief &amp; Transition</span><span class="jmpg">25 Guided Pages</span></div>
+   <div class="jmtitle">When the Ground Shifts</div>
+   <div class="jmsub">Finding Firm Footing in Seasons of Grief &amp; Transition</div>
+   <div class="jmsrefs"><span class="jmsr">Psalms 34:18</span><span class="jmsr">Matthew 5:4</span><span class="jmsr">2 Corinthians 1:3</span></div>
+  </div>
+  <div class="jmbody">
+   <div class="jmlbl lr">About This Journal</div>
+   <div class="jmabout"><p>There are seasons in life when the earth beneath you trembles. A relationship ends. A dream dissolves. A diagnosis arrives. A loved one is taken too soon. The world rearranges itself without your permission, and you are left wondering how to take the next step.</p><p>This journal was written for you. Not to rush you through your pain. Not to offer empty comfort. But to walk beside you, with the very Word of God as your guide, through the valley, and gently, firmly, lovingly lead you to the other side. God does not ask you to pretend the ground is not shifting. He asks only that you let Him be close.</p></div>
+   <div class="jmlbl lr">Your Journey, 5 Sections</div>
+   <div class="jmjrn">
+    <div class="jmstop"><div class="jmsn snr">1</div><div><div class="jsttitle">Name the Ground Beneath You</div><div class="jstref">Psalms 34:18, "The LORD is close to the brokenhearted and saves those who are crushed in spirit."</div><div class="jstdesc">The Hebrew word for "brokenhearted" describes something crushed, fractured at its core. To that level of pain God says: I am close. This section gives you permission to name your grief fully, because you cannot guard what you have not first honestly assessed.</div></div></div>
+    <div class="jmstop"><div class="jmsn snr">2</div><div><div class="jsttitle">The Lord Who Draws Near</div><div class="jstref">2 Corinthians 1:3, "...the Father of compassion and the God of all comfort."</div><div class="jstdesc">Paul wrote from extraordinary suffering and began not with complaint but with praise for the God who meets him inside the pain. Not the God of some comfort, of ALL comfort. This section builds the posture of reception, not just endurance.</div></div></div>
+    <div class="jmstop"><div class="jmsn snr">3</div><div><div class="jsttitle">The Blessing Within the Mourning</div><div class="jstref">Matthew 5:4, "Blessed are those who mourn, for they will be comforted."</div><div class="jstdesc">Jesus did not say blessed are those who have moved past mourning. Blessed are those in the thick of it. The comfort is inseparable from the mourning. This section gives you full, God-honoured permission to grieve.</div></div></div>
+    <div class="jmstop"><div class="jmsn snr">4</div><div><div class="jsttitle">Receiving God's Comfort</div><div class="jstref">Psalms 34:18, "...and saves those who are crushed in spirit."</div><div class="jstdesc">The Hebrew word "saves" means to bring into a wide and open space. You do not end in the rubble. This section builds the spiritual muscle of holding grief and hope in the same hand simultaneously.</div></div></div>
+    <div class="jmstop"><div class="jmsn snr">5</div><div><div class="jsttitle">Rising from the Shift</div><div class="jstref">2 Corinthians 1:4, "...so that we can comfort those in any trouble with the comfort we ourselves receive."</div><div class="jstdesc">Your pain is not wasted, it becomes the credential that allows you to sit with another woman and say: I know. I have been there. And God was faithful. Your testimony is forming even now.</div></div></div>
+   </div>
+   <div class="jmlbl lr">A Glimpse Inside, Section 1 Directive</div>
+   <div class="jmdbox"><div class="jmdk lr">The Directive</div><div class="jmdq">"Let yourself be honest. Not the version of you that is holding up well. The real you, the one who wept in the shower. That woman is the one God draws near to. Psalms 34:18 is not a comfort for those who are slightly disappointed. It is a promise for the brokenhearted, the Hebrew word describes something crushed, fractured at its core. And to that level of pain God says: I am close. Name what is broken today."</div><div class="jmdfade"></div></div>
+   <div class="jmlbl lr">What's Inside Each Section</div>
+   <div class="jmigrid">
+    <div class="jmitem"><div class="jmii wr"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="jmitxt"><strong>Scripture Deep-Dive</strong>Hebrew word studies that open the full weight of each passage</div></div>
+    <div class="jmitem"><div class="jmii wr"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><div class="jmitxt"><strong>4 Reflection Prompts</strong>Specific questions that move you from reading into real encounter</div></div>
+    <div class="jmitem"><div class="jmii wr"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg></div><div class="jmitxt"><strong>Guided Prayer Page</strong>Space to write your raw, honest prayer to God after every section</div></div>
+    <div class="jmitem"><div class="jmii wr"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="jmitxt"><strong>Clear Next Steps</strong>Specific, actionable directives, not vague suggestions</div></div>
+   </div>
+   <div class="jmcta cr"><h4>Ready to walk through this with God?</h4><p>Purchase the digital PDF instantly, or order a beautiful physical copy.</p><div class="jmcta-btns"><a href="https://payhip.com/b/Zmsor" target="_blank" rel="noopener" class="jmctabtn ctabr" style="text-decoration:none;display:inline-flex;align-items:center;gap:.4rem"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Buy Digital</a><button class="jmctabtn ctaout" onclick="closeJ('j1');openOrder('When the Ground Shifts')">Order Physical</button><button class="jmctabtn ctaout" onclick="closeJ('j1');scrollS('newsletter')">Subscribe</button></div></div>
+  </div>
+ </div>
+</div>
+
+<!-- JOURNAL MODAL 2 -->
+<div class="ov" id="ov-j2" onclick="if(event.target===this){closeJ('j2')}">
+ <div class="jmbox">
+  <div class="jmhero hg"><div class="jmo jmo1"></div><div class="jmo jmo2"></div>
+   <button class="jmclose" onclick="closeJ('j2')">&times;</button>
+   <div class="jmN">02</div>
+   <div class="jmtr"><span class="jmt jmt-g">Purpose &amp; Calling</span><span class="jmpg">25 Guided Pages</span></div>
+   <div class="jmtitle">She Who Decides</div>
+   <div class="jmsub">God-Centred Clarity for Women at the Crossroads</div>
+   <div class="jmsrefs"><span class="jmsr">Jeremiah 29:11</span><span class="jmsr">Galatians 1:15-16</span><span class="jmsr">Ephesians 2:10</span></div>
+  </div>
+  <div class="jmbody">
+   <div class="jmlbl lg">About This Journal</div>
+   <div class="jmabout"><p>Every woman reaches crossroads. Moments where the path diverges and the decision in front of you carries more weight than you feel equipped to carry. A career shift. A relationship decision. A calling that seems too large for your résumé.</p><p>This journal is for the woman who needs more than advice. She needs a word from God. The world gives you frameworks. This journal gives you Scripture rooted directives that align every decision with the One who already knows where every road leads. You were created to decide in partnership with the God who called you before you were born.</p></div>
+   <div class="jmlbl lg">Your Journey, 5 Sections</div>
+   <div class="jmjrn">
+    <div class="jmstop"><div class="jmsn sng">1</div><div><div class="jsttitle">God Already Knows</div><div class="jstref">Jeremiah 29:11, "For I know the plans I have for you," declares the LORD."</div><div class="jstdesc">The Hebrew word "yada" means intimate, thorough knowing, God is not confused about your situation. He already has a plan. This section anchors your decision-making in that truth before you take another step.</div></div></div>
+    <div class="jmstop"><div class="jmsn sng">2</div><div><div class="jsttitle">You Were Set Apart</div><div class="jstref">Galatians 1:15-16, "God, who set me apart from my mother's womb and called me by his grace..."</div><div class="jstdesc">Before Paul made any choice, God had already set him apart. The call preceded the action. The purpose preceded the person. Your calling is not something you generate, it is something you uncover.</div></div></div>
+    <div class="jmstop"><div class="jmsn sng">3</div><div><div class="jsttitle">You Are His Masterpiece</div><div class="jstref">Ephesians 2:10, "We are God's handiwork, created in Christ Jesus to do good works."</div><div class="jstdesc">"Handiwork" in Greek is "poiema", from which we get the word poem. You are God's poem. And the good works were prepared in advance. Your assignment is already written; the path already cleared.</div></div></div>
+    <div class="jmstop"><div class="jmsn sng">4</div><div><div class="jsttitle">Discerning the Voice of God</div><div class="jstref">Jeremiah 29:11, "...plans to give you hope and a future."</div><div class="jstdesc">Decision-making with God requires distinguishing His voice from fear, people's expectations, and your own ambition. This section gives you a practical discernment framework that leads to God-aligned decisions.</div></div></div>
+    <div class="jmstop"><div class="jmsn sng">5</div><div><div class="jsttitle">Walking in the Decision</div><div class="jstref">Ephesians 2:10, "...good works, which God prepared in advance for us to do."</div><div class="jstdesc">A decision unmade is still a decision. At some point, the woman who has prayed must take a step. Not a perfect step, a faithful one. God does not require you to see the entire staircase.</div></div></div>
+   </div>
+   <div class="jmlbl lg">A Glimpse Inside, Section 3 Directive</div>
+   <div class="jmdbox"><div class="jmdk lg">The Directive</div><div class="jmdq">"Stop asking 'what should I do?' in isolation, and start asking 'what has God prepared for me to walk into?' These are different questions. One is about striving. The other is about alignment. God did not create you generally and hope you'd find something useful to do. He created you specifically for works He had already placed ahead of you on the road."</div><div class="jmdfade" style="background:linear-gradient(transparent,var(--ivory))"></div></div>
+   <div class="jmlbl lg">What's Inside</div>
+   <div class="jmigrid">
+    <div class="jmitem"><div class="jmii wg"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="jmitxt"><strong>Discernment Framework</strong>Practical tools to identify God's voice among competing voices</div></div>
+    <div class="jmitem"><div class="jmii wg"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><div class="jmitxt"><strong>4 Reflection Prompts</strong>Bringing the decision out of your head and before God clearly</div></div>
+    <div class="jmitem"><div class="jmii wg"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg></div><div class="jmitxt"><strong>Prayer Pages</strong>Space to lay every option before God and listen for direction</div></div>
+    <div class="jmitem"><div class="jmii wg"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="jmitxt"><strong>Next Faithful Step</strong>Each section ends with a specific, nameable next step to take</div></div>
+   </div>
+   <div class="jmcta cg"><h4>Ready to decide with clarity and faith?</h4><p>Purchase the digital PDF instantly, or order a beautiful physical copy.</p><div class="jmcta-btns"><a href="https://payhip.com/b/CBmXO" target="_blank" rel="noopener" class="jmctabtn ctabg" style="text-decoration:none;display:inline-flex;align-items:center;gap:.4rem"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Buy Digital</a><button class="jmctabtn ctaout" onclick="closeJ('j2');openOrder('She Who Decides')">Order Physical</button><button class="jmctabtn ctaout" onclick="closeJ('j2');scrollS('newsletter')">Subscribe</button></div></div>
+  </div>
+ </div>
+</div>
+
+<!-- JOURNAL MODAL 3 -->
+<div class="ov" id="ov-j3" onclick="if(event.target===this){closeJ('j3')}">
+ <div class="jmbox">
+  <div class="jmhero hs"><div class="jmo jmo1"></div><div class="jmo jmo2"></div>
+   <button class="jmclose" onclick="closeJ('j3')">&times;</button>
+   <div class="jmN">03</div>
+   <div class="jmtr"><span class="jmt jmt-s">Leadership &amp; Home</span><span class="jmpg">25 Guided Pages</span></div>
+   <div class="jmtitle">Loved &amp; Leading</div>
+   <div class="jmsub">Building a Life of Wisdom, Strength, and Grace</div>
+   <div class="jmsrefs"><span class="jmsr">Proverbs 14:1</span><span class="jmsr">Proverbs 24:3-4</span><span class="jmsr">Genesis 2:18</span><span class="jmsr">Proverbs 3:5-6</span></div>
+  </div>
+  <div class="jmbody">
+   <div class="jmlbl ls">About This Journal</div>
+   <div class="jmabout"><p>Leadership is not a title you are given. It is a weight you carry. Every woman carries it, in her home, her work, her relationships, her community. Whether you lead a boardroom or a family table, you are leading something. The question is not whether you will lead. The question is how.</p><p>This journal is for the woman who wants to lead with wisdom, not as an unattainable standard, but as a living picture of what wisdom embodied looks like. A woman who builds rather than tears down. Who leads from love rather than fear.</p></div>
+   <div class="jmlbl ls">Your Journey, 5 Sections</div>
+   <div class="jmjrn">
+    <div class="jmstop"><div class="jmsn sns">1</div><div><div class="jsttitle">The Woman Who Builds</div><div class="jstref">Proverbs 14:1, "The wise woman builds her house, but with her own hands the foolish one tears hers down."</div><div class="jstdesc">A woman's own hands either build or tear down her house. The difference between wise and foolish is not talent or resources, it is wisdom consistently chosen over instinct. This section teaches you to audit what you are actually building.</div></div></div>
+    <div class="jmstop"><div class="jmsn sns">2</div><div><div class="jsttitle">Building with Wisdom</div><div class="jstref">Proverbs 24:3-4, "By wisdom a house is built, through understanding it is established..."</div><div class="jstdesc">Three building materials: wisdom (the foundation), understanding (the structure, seeing beneath the surface), and knowledge (the furnishing, the detail that fills a life with rare and beautiful treasures). Each one essential.</div></div></div>
+    <div class="jmstop"><div class="jmsn sns">3</div><div><div class="jsttitle">The Strength of the Helper</div><div class="jstref">Genesis 2:18, "I will make a helper suitable for him."</div><div class="jstdesc">The Hebrew word "ezer" (helper) is the same word Scripture uses for God Himself in Psalm 121. You are not a diminished support role, you are a strategic partner, a strength-bringer. Your contribution is not optional. It is essential.</div></div></div>
+    <div class="jmstop"><div class="jmsn sns">4</div><div><div class="jsttitle">Trusting Over Strategising</div><div class="jstref">Proverbs 3:5-6, "Trust in the LORD with all your heart and lean not on your own understanding..."</div><div class="jstdesc">For capable women, the greatest temptation is to lean on their own analysis. God is not asking you to stop thinking. He is asking you to trust Him more than your conclusions, and watch Him make the path straight.</div></div></div>
+    <div class="jmstop"><div class="jmsn sns">5</div><div><div class="jsttitle">Leading from Love</div><div class="jstref">Proverbs 14:1, "The wise woman builds her house..."</div><div class="jstdesc">Fear-based leadership demands performance. Love-based leadership invites transformation. This section assesses the current culture of your leadership and helps you lead from your deepest, most God-given resource, love.</div></div></div>
+   </div>
+   <div class="jmlbl ls">A Glimpse Inside, Directive</div>
+   <div class="jmdbox"><div class="jmdk ls">The Directive</div><div class="jmdq">"Stop minimising your leadership as 'just helping.' Reclaim the full weight of being an ezer. In your home, your presence is not decoration, it is foundation. In your workplace, your contribution is not optional, it is strategic. You were created with the DNA of the strongest helper in Scripture. Lead knowing that your strength was placed in this specific sphere on purpose."</div><div class="jmdfade" style="background:linear-gradient(transparent,var(--ivory))"></div></div>
+   <div class="jmlbl ls">What's Inside</div>
+   <div class="jmigrid">
+    <div class="jmitem"><div class="jmii ws"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="jmitxt"><strong>Leadership Audit</strong>Honest assessment of where you are building vs. tearing down</div></div>
+    <div class="jmitem"><div class="jmii ws"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><div class="jmitxt"><strong>4 Reflection Prompts</strong>From intention into actual leadership practice</div></div>
+    <div class="jmitem"><div class="jmii ws"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg></div><div class="jmitxt"><strong>Surrender Prayers</strong>Laying your leadership plans before God who makes paths straight</div></div>
+    <div class="jmitem"><div class="jmii ws"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="jmitxt"><strong>Vision Declaration</strong>Written statement of the leader and household you are building</div></div>
+   </div>
+   <div class="jmcta cs"><h4>Ready to build with wisdom and lead from love?</h4><p>Purchase the digital PDF instantly, or order a beautiful physical copy.</p><div class="jmcta-btns"><a href="https://payhip.com/b/6PVI4" target="_blank" rel="noopener" class="jmctabtn ctabs" style="text-decoration:none;display:inline-flex;align-items:center;gap:.4rem"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Buy Digital</a><button class="jmctabtn ctaout" onclick="closeJ('j3');openOrder('Loved &amp; Leading')">Order Physical</button><button class="jmctabtn ctaout" onclick="closeJ('j3');scrollS('newsletter')">Subscribe</button></div></div>
+  </div>
+ </div>
+</div>
+<!-- JOURNAL MODAL 4 -->
+<div class="ov" id="ov-j4" onclick="if(event.target===this){closeJ('j4')}">
+ <div class="jmbox">
+  <div class="jmhero hr"><div class="jmo jmo1"></div><div class="jmo jmo2"></div>
+   <button class="jmclose" onclick="closeJ('j4')">&times;</button>
+   <div class="jmN">04</div>
+   <div class="jmtr"><span class="jmt jmt-r">Healing &amp; Identity</span><span class="jmpg">25 Guided Pages</span></div>
+   <div class="jmtitle">Guarded Heart</div>
+   <div class="jmsub">Protecting Your Peace, Identity, and Emotional Wellbeing</div>
+   <div class="jmsrefs"><span class="jmsr">Proverbs 4:23</span><span class="jmsr">Isaiah 26:3</span><span class="jmsr">Colossians 3:15</span><span class="jmsr">1 Peter 5:7</span></div>
+  </div>
+  <div class="jmbody">
+   <div class="jmlbl lr">About This Journal</div>
+   <div class="jmabout"><p>Above all else. That is where God places the guarding of your heart. Not as an afterthought, above all else, because everything flows from it. Your decisions, relationships, words, and work all draw from the condition of the heart beneath your chest.</p><p>This journal is not about building walls. It is about building wisdom, the kind that knows what to let in and what to hold outside. The kind that keeps you anchored in perfect peace even when the world churns. The kind that casts anxiety before it calcifies into fear.</p></div>
+   <div class="jmlbl lr">Your Journey, 5 Sections</div>
+   <div class="jmjrn">
+    <div class="jmstop"><div class="jmsn snr">1</div><div><div class="jsttitle">The Wellspring of Your Life</div><div class="jstref">Proverbs 4:23, "Above all else, guard your heart, for everything you do flows from it."</div><div class="jstdesc">Solomon uses the image of a wellspring, the origin point from which everything flows downstream. Your parenting, marriage, work, and capacity for joy all draw from the heart's condition. This section teaches you to audit your heart honestly, without shame.</div></div></div>
+    <div class="jmstop"><div class="jmsn snr">2</div><div><div class="jsttitle">Perfect Peace</div><div class="jstref">Isaiah 26:3, "You will keep in perfect peace those whose minds are steadfast, because they trust in you."</div><div class="jstdesc">The Hebrew is "shalom shalom", double peace. Not the absence of difficulty, but the presence of God transcending every circumstance. The condition is a steadfast mind. This section builds your mind-fixing practice, returning to God every time.</div></div></div>
+    <div class="jmstop"><div class="jmsn snr">3</div><div><div class="jsttitle">Let Peace Rule</div><div class="jstref">Colossians 3:15, "Let the peace of Christ rule in your hearts..."</div><div class="jstdesc">"Rule" in Greek is "brabeuo", the word for an umpire. The peace of Christ calls the play in every decision and relationship. A consistent absence of peace is God's invitation to bring that area under His authority.</div></div></div>
+    <div class="jmstop"><div class="jmsn snr">4</div><div><div class="jsttitle">Casting Your Anxiety</div><div class="jstref">1 Peter 5:7, "Cast all your anxiety on him because he cares for you."</div><div class="jstdesc">"Cast" is the same word used for throwing a fishing net, with force and intention. Not polite surrender. The Greek word "melei" is an active, passionate caring. God is not indifferent to the specific worry keeping you up tonight.</div></div></div>
+    <div class="jmstop"><div class="jmsn snr">5</div><div><div class="jsttitle">The Heart That Endures</div><div class="jstref">Proverbs 4:23, "Guard your heart, for everything you do flows from it."</div><div class="jstdesc">The guarded heart is not an invulnerable heart, it is a deeply open one. Protected enough to love fully and feel deeply without being overrun. This section builds one lasting heart-guarding practice you carry beyond these pages.</div></div></div>
+   </div>
+   <div class="jmlbl lr">A Glimpse Inside, Directive</div>
+   <div class="jmdbox"><div class="jmdk lr">The Directive</div><div class="jmdq">"Make the casting a practice, not a one-time event. Every time anxiety rises, physically open your hands and say out loud: 'I cast this onto You. You care for me.' Let the body participate in the spiritual act. Over time, this practice rewires the anxious mind and builds in its place a deep, habitual trust. The Greek word for 'cares' is melei, an active, passionate caring."</div><div class="jmdfade"></div></div>
+   <div class="jmlbl lr">What's Inside</div>
+   <div class="jmigrid">
+    <div class="jmitem"><div class="jmii wr"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="jmitxt"><strong>Heart Audit Prompts</strong>Honest inventories of what is flowing from your wellspring right now</div></div>
+    <div class="jmitem"><div class="jmii wr"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><div class="jmitxt"><strong>4 Reflection Prompts</strong>Bringing specific anxieties and peace-blockers into the light</div></div>
+    <div class="jmitem"><div class="jmii wr"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg></div><div class="jmitxt"><strong>Casting Prayers</strong>Space to name and release every anxiety to God who cares</div></div>
+    <div class="jmitem"><div class="jmii wr"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="jmitxt"><strong>Peace Practice Commitment</strong>A heart-guarding practice you define and commit to keeping</div></div>
+   </div>
+   <div class="jmcta cr"><h4>Ready to guard what matters most?</h4><p>Purchase the digital PDF instantly, or order a beautiful physical copy.</p><div class="jmcta-btns"><a href="https://payhip.com/b/dBrRL" target="_blank" rel="noopener" class="jmctabtn ctabr" style="text-decoration:none;display:inline-flex;align-items:center;gap:.4rem"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Buy Digital</a><button class="jmctabtn ctaout" onclick="closeJ('j4');openOrder('Guarded Heart')">Order Physical</button><button class="jmctabtn ctaout" onclick="closeJ('j4');scrollS('newsletter')">Subscribe</button></div></div>
+  </div>
+ </div>
+</div>
+
+<!-- JOURNAL MODAL 5 -->
+<div class="ov" id="ov-j5" onclick="if(event.target===this){closeJ('j5')}">
+ <div class="jmbox">
+  <div class="jmhero hg"><div class="jmo jmo1"></div><div class="jmo jmo2"></div>
+   <button class="jmclose" onclick="closeJ('j5')">&times;</button>
+   <div class="jmN">05</div>
+   <div class="jmtr"><span class="jmt jmt-g">Faith &amp; Business</span><span class="jmpg">25 Guided Pages</span></div>
+   <div class="jmtitle">The Faithful Builder</div>
+   <div class="jmsub">Kingdom Principles for Women Who Are Building</div>
+   <div class="jmsrefs"><span class="jmsr">Hebrews 3:4</span><span class="jmsr">Proverbs 16:3</span><span class="jmsr">Galatians 6:9</span></div>
+  </div>
+  <div class="jmbody">
+   <div class="jmlbl lg">About This Journal</div>
+   <div class="jmabout"><p>You have a vision. A business, a ministry, an idea, a venture you have been carrying, sometimes with excitement, sometimes with exhaustion, sometimes with the growing sense that you might be building the right thing in the wrong way.</p><p>This journal is for the woman who wants to build it right. Not just strategically, though strategy matters. But in the right order. With the right foundation. With God as the ultimate architect. Because Hebrews 3:4 says it plainly: God is the builder of everything.</p></div>
+   <div class="jmlbl lg">Your Journey, 5 Sections</div>
+   <div class="jmjrn">
+    <div class="jmstop"><div class="jmsn sng">1</div><div><div class="jsttitle">God Is the Builder of Everything</div><div class="jstref">Hebrews 3:4, "For every house is built by someone, but God is the builder of everything."</div><div class="jstdesc">Your effort and skill are real and they matter. But behind every builder is the ultimate Builder. You are a co-builder with the One who built the heavens and earth. This section invites you to lay your entire vision before Him and watch what shifts.</div></div></div>
+    <div class="jmstop"><div class="jmsn sng">2</div><div><div class="jsttitle">Commit Your Work to God</div><div class="jstref">Proverbs 16:3, "Commit to the LORD whatever you do, and he will establish your plans."</div><div class="jstdesc">The Hebrew word "galal" means to roll, roll your works onto the Lord. The weight, the burden, the outcome. What you commit, He establishes. "Establish" means to be confirmed, made firm, to stand. This is the posture of faith in the marketplace.</div></div></div>
+    <div class="jmstop"><div class="jmsn sng">3</div><div><div class="jsttitle">Do Not Grow Weary</div><div class="jstref">Galatians 6:9, "Let us not become weary in doing good, for at the proper time we will reap a harvest."</div><div class="jstdesc">Paul wrote this to tired people, not lazy, tired. There will be seasons where inputs outweigh outputs. These are not signs of failure, they are the long middle of a harvest that will be worth every moment. Know your season.</div></div></div>
+    <div class="jmstop"><div class="jmsn sng">4</div><div><div class="jsttitle">Kingdom Economics</div><div class="jstref">Proverbs 16:3, "...he will establish your plans."</div><div class="jstdesc">The kingdom operates on different principles than the marketplace. The seed that dies produces the harvest. The business that serves builds equity no balance sheet captures. This section defines the kingdom purpose behind your specific work.</div></div></div>
+    <div class="jmstop"><div class="jmsn sng">5</div><div><div class="jsttitle">The Harvest Is Coming</div><div class="jstref">Galatians 6:9, "...if we do not give up."</div><div class="jstdesc">The faithful builder finishes, not perfectly, but faithfully. She is not defined by what she abandoned in weariness, but by what she completed in faith. This section writes your building declaration and establishes the character you need to cross the finish line.</div></div></div>
+   </div>
+   <div class="jmlbl lg">A Glimpse Inside, Directive</div>
+   <div class="jmdbox"><div class="jmdk lg">The Directive</div><div class="jmdq">"Identify the areas of your work where you have been gripping the outcome too tightly. Where are you striving instead of committing? Write them down, then practice the physical act of rolling, open your hands, name the thing, and say out loud: 'I roll this onto You.' Do it for every item on your list. One hand working diligently, the other hand releasing the outcome. This is the posture of faith in the marketplace."</div><div class="jmdfade" style="background:linear-gradient(transparent,var(--ivory))"></div></div>
+   <div class="jmlbl lg">What's Inside</div>
+   <div class="jmigrid">
+    <div class="jmitem"><div class="jmii wg"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="jmitxt"><strong>Surrender Exercises</strong>Structured practices for releasing outcomes to God without stopping the work</div></div>
+    <div class="jmitem"><div class="jmii wg"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><div class="jmitxt"><strong>4 Reflection Prompts</strong>Season, weariness level, and kingdom purpose</div></div>
+    <div class="jmitem"><div class="jmii wg"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg></div><div class="jmitxt"><strong>Dedication Prayers</strong>Written dedication of your work and outcomes before God</div></div>
+    <div class="jmitem"><div class="jmii wg"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="jmitxt"><strong>Kingdom Mission Statement</strong>Your work's declared purpose in God's economy</div></div>
+   </div>
+   <div class="jmcta cg"><h4>Ready to build with God as your foundation?</h4><p>Purchase the digital PDF instantly, or order a beautiful physical copy.</p><div class="jmcta-btns"><a href="https://payhip.com/b/60L8z" target="_blank" rel="noopener" class="jmctabtn ctabg" style="text-decoration:none;display:inline-flex;align-items:center;gap:.4rem"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Buy Digital</a><button class="jmctabtn ctaout" onclick="closeJ('j5');openOrder('The Faithful Builder')">Order Physical</button><button class="jmctabtn ctaout" onclick="closeJ('j5');scrollS('newsletter')">Subscribe</button></div></div>
+  </div>
+ </div>
+</div>
+
+<!-- JOURNAL MODAL 6 -->
+<div class="ov" id="ov-j6" onclick="if(event.target===this){closeJ('j6')}">
+ <div class="jmbox">
+  <div class="jmhero hs"><div class="jmo jmo1"></div><div class="jmo jmo2"></div>
+   <button class="jmclose" onclick="closeJ('j6')">&times;</button>
+   <div class="jmN">06</div>
+   <div class="jmtr"><span class="jmt jmt-s">Identity &amp; Community</span><span class="jmpg">25 Guided Pages</span></div>
+   <div class="jmtitle">Rooted &amp; Rising</div>
+   <div class="jmsub">Discovering Who You Truly Are in Christ</div>
+   <div class="jmsrefs"><span class="jmsr">2 Corinthians 5:17</span><span class="jmsr">Galatians 3:26</span><span class="jmsr">1 Peter 2:9</span><span class="jmsr">Galatians 2:20</span></div>
+  </div>
+  <div class="jmbody">
+   <div class="jmlbl ls">About This Journal</div>
+   <div class="jmabout"><p>Who are you, really? Not the version your upbringing described. Not the one your past mistakes have defined. Not the woman the voices in your head have been narrating for years. Who are you, in Christ?</p><p>This is the question at the centre of every other question. Get this wrong and everything downstream is slightly off. Get this right, anchor yourself in what God says is true, and everything changes. Rooted &amp; Rising dismantles false identities and plants you in the truth. Not one day. Right now.</p></div>
+   <div class="jmlbl ls">Your Journey, 5 Sections</div>
+   <div class="jmjrn">
+    <div class="jmstop"><div class="jmsn sns">1</div><div><div class="jsttitle">The New Creation Has Come</div><div class="jstref">2 Corinthians 5:17, "If anyone is in Christ, the new creation has come: The old has gone, the new is here!"</div><div class="jstdesc">The Greek word "kainos" means new in quality, a different kind of thing altogether. The woman shaped by trauma, failure, and others' words is not who you are in Christ. She is gone. Not repressed. Gone. This section serves the old identities their eviction notice.</div></div></div>
+    <div class="jmstop"><div class="jmsn sns">2</div><div><div class="jsttitle">Child of the Most High God</div><div class="jstref">Galatians 3:26, "So in Christ Jesus you are all children of God through faith."</div><div class="jstdesc">Notice the word: "are." Not "will be." Are. Present tense. Right now. A child of God has access through relationship, not performance. This section exposes the orphan spirit and replaces it with the security of a daughter who belongs unconditionally.</div></div></div>
+    <div class="jmstop"><div class="jmsn sns">3</div><div><div class="jsttitle">Chosen, Royal, and Holy</div><div class="jstref">1 Peter 2:9, "But you are a chosen people, a royal priesthood, a holy nation, God's special possession..."</div><div class="jstdesc">Four identity declarations in one verse. Chosen: selected, not settled for. Royal: you carry the bloodline of the King. Holy: set apart for sacred purpose. Special possession: specifically held, valued, and protected by God. All four are true of you, right now.</div></div></div>
+    <div class="jmstop"><div class="jmsn sns">4</div><div><div class="jsttitle">No Longer I</div><div class="jstref">Galatians 2:20, "I have been crucified with Christ and I no longer live, but Christ lives in me."</div><div class="jstdesc">The most radical identity statement in Scripture. Not who you are becoming, who already lives in you. Christ Himself. The same power that raised Jesus from the dead, active within your daily life. This section invites the full surrender that makes space for everything true to rise.</div></div></div>
+    <div class="jmstop"><div class="jmsn sns">5</div><div><div class="jsttitle">Rising in Who You Are</div><div class="jstref">2 Corinthians 5:17 &amp; 1 Peter 2:9</div><div class="jstdesc">The woman who knows who she is in Christ does not shrink. She rises, not in arrogance, but in the quiet, settled confidence of someone who knows whose she is. This section writes your final, full identity declaration. Present tense. True.</div></div></div>
+   </div>
+   <div class="jmlbl ls">A Glimpse Inside, Directive</div>
+   <div class="jmdbox"><div class="jmdk ls">The Directive</div><div class="jmdq">"Stand in each of these four identities specifically. Write what it means for you, in your specific life, your specific struggles, to be chosen, to be royal, to be holy, to be God's special possession. Do not write a theology paper. Write a personal reckoning with truth that is specifically and irreversibly yours. By heaven's metrics, all four of these are true of you. Right now. Receive them."</div><div class="jmdfade" style="background:linear-gradient(transparent,var(--ivory))"></div></div>
+   <div class="jmlbl ls">What's Inside</div>
+   <div class="jmigrid">
+    <div class="jmitem"><div class="jmii ws"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="jmitxt"><strong>Identity Eviction Notices</strong>Prompts to name and release false identities from your past</div></div>
+    <div class="jmitem"><div class="jmii ws"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><div class="jmitxt"><strong>4 Reflection Prompts</strong>Personal reckonings with each dimension of your Christ-given identity</div></div>
+    <div class="jmitem"><div class="jmii ws"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg></div><div class="jmitxt"><strong>Surrender Prayers</strong>Crucifying the old self and welcoming Christ who lives through you</div></div>
+    <div class="jmitem"><div class="jmii ws"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="jmitxt"><strong>Identity Declaration</strong>A bold, present-tense declaration of exactly who you are in Christ</div></div>
+   </div>
+   <div class="jmcta cs"><h4>Ready to discover who you truly are?</h4><p>Purchase the digital PDF instantly, or order a beautiful physical copy.</p><div class="jmcta-btns"><a href="https://payhip.com/b/0WYPl" target="_blank" rel="noopener" class="jmctabtn ctabs" style="text-decoration:none;display:inline-flex;align-items:center;gap:.4rem"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.2;fill:none;flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Buy Digital</a><button class="jmctabtn ctaout" onclick="closeJ('j6');openOrder('Rooted &amp; Rising')">Order Physical</button><button class="jmctabtn ctaout" onclick="closeJ('j6');scrollS('newsletter')">Subscribe</button></div></div>
+  </div>
+ </div>
+</div>
+
+<!-- PRIVACY MODAL -->
+<div class="ov" id="ov-privacy" onclick="if(event.target===this){closeM('privacy')}">
+ <div class="mbox">
+  <div class="mhead"><h3>Privacy Policy</h3><button class="mclose" onclick="closeM('privacy')">&times;</button></div>
+  <div class="mbody">
+   <div class="mbadge"><span>Effective: January 1, 2026</span></div>
+   <p>It's in the Core operates inthecore.online. This policy explains how we collect, use, and protect your information when you visit our site, place an order, or subscribe to our newsletter.</p>
+   <h4>Information We Collect</h4>
+   <ul><li><strong>Email address, name</strong>, when you subscribe, contact us, or place an order</li><li><strong>Order details</strong>, journal selection, format, delivery address</li><li><strong>Usage data</strong>, standard browser information collected automatically</li></ul>
+   <h4>How We Use Your Information</h4>
+   <ul><li>Process and fulfil your journal orders</li><li>Send The Directive newsletter to subscribers</li><li>Respond to enquiries and provide customer support</li><li>Send launch updates and subscriber-only offers</li></ul>
+   <h4>Your Rights</h4>
+   <p>You have the right to access, update, or delete your personal information at any time. To unsubscribe from The Directive, use the link in any issue. For data requests, contact <strong>builderhercore@pm.me</strong>.</p>
+   <h4>Data Security</h4>
+   <p>All form submissions are processed securely via FormSubmit and delivered to our inbox at <strong>builderhercore@pm.me</strong>. We never sell your data to third parties.</p>
+   <h4>Contact</h4>
+   <p>Questions? <strong>builderhercore@pm.me</strong> &nbsp;&middot;&nbsp; <strong>inthecore.online</strong></p>
+  </div>
+ </div>
+</div>
+
+<!-- TERMS MODAL -->
+<div class="ov" id="ov-terms" onclick="if(event.target===this){closeM('terms')}">
+ <div class="mbox">
+  <div class="mhead"><h3>Terms &amp; Conditions</h3><button class="mclose" onclick="closeM('terms')">&times;</button></div>
+  <div class="mbody">
+   <div class="mbadge"><span>Effective: January 1, 2026</span></div>
+   <p>By accessing inthecore.online or purchasing any product, you agree to be bound by these Terms. Please read carefully.</p>
+   <h4>About Us</h4>
+   <p>It's in the Core is a Christian journal brand for women with community in Kenya and the USA. Contact: <strong>builderhercore@pm.me</strong></p>
+   <h4>Intellectual Property</h4>
+   <p>All journals, content, designs, and branding are protected under copyright law. &copy; 2026 It&rsquo;s in the Core. All Rights Reserved. Unauthorized reproduction or distribution is strictly prohibited.</p>
+   <h4>Pricing</h4>
+   <p>Prices are listed in USD and Kenyan Shillings. The exact price within each range depends on journal selection and delivery location. Prices are confirmed at time of order by our team.</p>
+   <h4>No Refund Policy</h4>
+   <div class="rbox"><p><strong>All sales are final. It's in the Core does not offer refunds, exchanges, or cancellations on any products, digital or physical. By completing a purchase, you acknowledge and agree to this policy.</strong> Questions before ordering? Contact builderhercore@pm.me before submitting your order.</p></div>
+   <h4>Newsletter, The Directive</h4>
+   <p>By subscribing to The Directive, you consent to receive weekly emails from It's in the Core. Unsubscribe at any time using the link in any issue. We never share subscriber data with third parties.</p>
+   <h4>Disclaimer</h4>
+   <p>Our journals are faith based resources and are not intended to replace professional counselling, medical, legal, or financial advice.</p>
+   <h4>Governing Law</h4>
+   <p>These Terms are governed by applicable law in the jurisdictions where It's in the Core operates, including Kenya and the United States of America.</p>
+   <h4>Contact</h4>
+   <p><strong>builderhercore@pm.me</strong> &nbsp;&middot;&nbsp; <strong>inthecore.online</strong></p>
+  </div>
+ </div>
+</div>
+<script>
+// NAV
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>50));
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.rv').forEach(r=>obs.observe(r));
+
+// CURRENCY TOGGLE (pricing section)
+function setCurrency(c){
+  document.querySelectorAll('.usd-p').forEach(el=>el.style.display=c==='usd'?'block':'none');
+  document.querySelectorAll('.ksh-p').forEach(el=>el.style.display=c==='ksh'?'block':'none');
+  document.getElementById('btn-usd').classList.toggle('active',c==='usd');
+  document.getElementById('btn-ksh').classList.toggle('active',c==='ksh');
+}
+
+// ORDER MODAL
+let currentOrderCurrency='usd';
+function openOrder(journalName){
+  const sel=document.getElementById('order-journal-select');
+  if(sel&&journalName){
+    for(let i=0;i<sel.options.length;i++){
+      if(sel.options[i].text.toLowerCase().includes(journalName.toLowerCase().split('&')[0].trim().toLowerCase())){sel.selectedIndex=i;break;}
+    }
+  }
+  openOv('order');
+}
+function closeOrder(){closeOv('order');}
+function setOrderCurrency(c){
+  currentOrderCurrency=c;
+  document.querySelectorAll('.usd-show').forEach(el=>el.style.display=c==='usd'?'block':'none');
+  document.querySelectorAll('.ksh-show').forEach(el=>el.style.display=c==='ksh'?'block':'none');
+  const bu=document.getElementById('obtn-usd'),bk=document.getElementById('obtn-ksh');
+  if(c==='usd'){bu.style.background='var(--gold)';bu.style.color='#fff';bu.style.border='none';bk.style.background='rgba(201,151,63,.12)';bk.style.color='var(--gold)';bk.style.border='1px solid rgba(201,151,63,.25)';}
+  else{bk.style.background='var(--gold)';bk.style.color='#fff';bk.style.border='none';bu.style.background='rgba(201,151,63,.12)';bu.style.color='var(--gold)';bu.style.border='1px solid rgba(201,151,63,.25)';}
+  document.getElementById('hidden-currency').value=c==='usd'?'USD':'KSh';
+}
+let currentOrderFormat='digital';
+function selectFormat(format,el){
+  document.querySelectorAll('.opcard').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  currentOrderFormat=format;
+  const labels={'digital':'Digital PDF','physical':'Physical Copy','bundle':'Full Bundle, All 6 Journals','gift':'Premium Gift Set'};
+  document.getElementById('hidden-format').value=labels[format]||format;
+}
+
+// PAYPAL CHECKOUT
+// PayPal doesn't settle in KES, so KSh prices below are only for display;
+// the actual charge always goes through in USD using the amounts here.
+const PAYPAL_BUSINESS_EMAIL='tennshawnient@gmail.com';
+const ORDER_USD_PRICE={digital:26.5,physical:35,bundle:48,gift:48.5};
+function goToPaypal(form){
+  const fd=new FormData(form);
+  const journal=fd.get('journal_title')||'Journal Order';
+  const labels={'digital':'Digital PDF','physical':'Physical Copy','bundle':'Full Bundle, All 6 Journals','gift':'Premium Gift Set'};
+  const formatLabel=labels[currentOrderFormat]||'Order';
+  const amount=ORDER_USD_PRICE[currentOrderFormat]||ORDER_USD_PRICE.digital;
+  const itemName=(formatLabel+' \u2013 '+journal).slice(0,120);
+  const params=new URLSearchParams({
+    cmd:'_xclick',
+    business:PAYPAL_BUSINESS_EMAIL,
+    item_name:itemName,
+    amount:amount.toFixed(2),
+    currency_code:'USD',
+    no_shipping:'0'
+  });
+  window.location.href='https://www.paypal.com/cgi-bin/webscr?'+params.toString();
+}
+
+// JOURNAL MODALS  (buttons pass full id e.g. 'j1', modal id is 'ov-j1')
+function openJ(id){openOv(id);}
+function closeJ(id){closeOv(id);}
+
+// LEGAL MODALS
+function openM(id){openOv(id);}
+function closeM(id){closeOv(id);}
+
+// CORE MODAL FUNCTIONS
+function openOv(id){
+  const el=document.getElementById('ov-'+id);
+  if(el){el.classList.add('open');document.body.style.overflow='hidden';}
+}
+function closeOv(id){
+  const el=document.getElementById('ov-'+id);
+  if(el){el.classList.remove('open');document.body.style.overflow='';}
+}
+function scrollS(id){
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+}
+
+// ESC KEY closes any open modal
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.querySelectorAll('.ov.open').forEach(m=>{m.classList.remove('open');});
+    document.body.style.overflow='';
+  }
+});
+
+// Ensure all nav anchor links work
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href').slice(1);
+    const target=document.getElementById(id);
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'});}
+  });
+});
+
+
+// ════════ LIVE CHAT ════════
+var chatOpen=false,chatInit=false,awaitName=false,awaitEmail=false,awaitMsg=false;
+var vName='',vEmail='',chatLog=[];
+
+var R={
+  'which':{t:"Great question! Here's a quick guide:\n\n🌿 <b>Grief or major change?</b> → When the Ground Shifts\n✨ <b>Big decision or crossroads?</b> → She Who Decides\n🏠 <b>Leading at home or work?</b> → Loved & Leading\n💛 <b>Need peace & healing?</b> → Guarded Heart\n💼 <b>Building a business?</b> → The Faithful Builder\n🌸 <b>Discovering your identity in Christ?</b> → Rooted & Rising\n\nWhich season are you in right now?",q:['I need more help choosing','Tell me about pricing','How do I order?']},
+  'price':{t:"Here's our pricing:\n\n<b>Digital PDF</b>, $24–$29 / KSh 1,800–2,200\n<b>Physical Copy</b>, $32–$38 / KSh 3,500–4,200\n<b>Bundle (all 6)</b>, $44–$52 / KSh 4,800–5,900\n<b>Premium Gift Set</b>, $42–$55 / KSh 5,800–6,500\n\nDigital copies are on Payhip, PayPal and M-Pesa accepted! 💛",q:['How do I buy digital?','Can I pay in KSh?','Tell me about the journals']},
+  'mpesa':{t:"Yes! 🎉 Kenyan customers can pay in KSh via <b>M-Pesa</b> through our Payhip store. Click any <b>Buy Digital</b> button, Payhip gives you the M-Pesa option at checkout. Your PDF delivers instantly after payment.",q:['Which journal is right for me?','How much does it cost?','How do I order physical?']},
+  'kenya':{t:"Absolutely, we serve Kenya and the USA! 🇰🇪🇺🇸\n\n<b>Digital:</b> Pay via M-Pesa or card through Payhip, instant delivery.\n<b>Physical:</b> We ship to Kenya. Use the Order Physical button on any journal card.",q:['How much does it cost?','Which journal is right for me?']},
+  'digital':{t:"Buying digital is simple:\n\n1. Click <b>Buy Digital</b> on any journal card\n2. You'll go to our Payhip store\n3. Pay via PayPal, card, or M-Pesa\n4. Your PDF downloads <b>instantly</b>, no waiting! 📥",q:['Which journal is right for me?','How much does it cost?']},
+  'physical':{t:"For physical copies, click the <b>Order Physical</b> button on any journal card and fill in the order form. We'll confirm within 24 hours and arrange delivery. We ship to both Kenya and the USA. 📦",q:['How much is physical?','Which journal is right for me?']},
+  'bundle':{t:"Our bundle includes all 6 journals at a significant saving:\n\n💛 <b>All 6 Journals</b>, $44–$52 / KSh 4,800–5,900\n\nClick <b>Order Now</b> on any card and select Bundle in the order form.",q:['How do I order?','Tell me about each journal']},
+  'gift':{t:"Our Premium Gift Set is perfect for a sister, friend, or mentor! 🎁\n\n<b>Gift Set</b>, $42–$55 / KSh 5,800–6,500\n\nIncludes gift wrapping, a personalised message, and your choice of journals. Ships to Kenya and the USA.",q:['How do I order a gift?','How much does it cost?']},
+  'refund':{t:"As noted in our Terms & Conditions, all sales are final, we don't offer refunds on digital or physical purchases. If you have a concern about your order please reach out and we'll do our best to help. 💛",q:['How do I contact you?','Tell me about the journals']},
+  'contact':{t:"You can reach us anytime:\n\n📧 <b>builderhercore@pm.me</b>\n🌐 <b>inthecore.online</b>\n\nWe typically respond within a few hours. You can also leave a message here and we'll get back to you!",q:['Send a message','Tell me about the journals']},
+  'newsletter':{t:"The Directive is our weekly interactive newsletter, a Scripture rooted directive sent every Monday to move you into the week with God's Word already active in your hands. Includes weekly challenges, reader polls, community spotlights, and subscriber discounts! Scroll down to sign up. 💌",q:['Tell me about the journals','How much do journals cost?']}
+};
+
+function getRsp(msg){
+  var m=msg.toLowerCase();
+  if(m.match(/^h[ie]|hello|hey/))return{t:"Hello, sister! Welcome to It's in the Core 🌸 How can I help you today?",q:['Which journal is right for me?','How much does it cost?','How do I order?']};
+  if(m.includes('which journal')||m.includes('right for me')||m.includes('choose')||m.includes('which one'))return R['which'];
+  if(m.includes('mpesa')||m.includes('m-pesa'))return R['mpesa'];
+  if(m.includes('ksh')||m.includes('shilling')||m.includes('kenya'))return R['kenya'];
+  if(m.includes('price')||m.includes('cost')||m.includes('how much')||m.includes('pricing'))return R['price'];
+  if(m.includes('digital')||m.includes('pdf')||m.includes('download')||m.includes('payhip'))return R['digital'];
+  if(m.includes('physical')||m.includes('ship')||m.includes('deliver')||m.includes('print'))return R['physical'];
+  if(m.includes('bundle')||m.includes('all 6')||m.includes('collection'))return R['bundle'];
+  if(m.includes('gift')||m.includes('present'))return R['gift'];
+  if(m.includes('refund')||m.includes('return')||m.includes('cancel'))return R['refund'];
+  if(m.includes('contact')||m.includes('email')||m.includes('reach'))return R['contact'];
+  if(m.includes('newsletter')||m.includes('directive')||m.includes('subscribe'))return R['newsletter'];
+  return null;
+}
+
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('chatBtn').classList.toggle('open',chatOpen);
+  document.getElementById('chatWindow').classList.toggle('open',chatOpen);
+  document.getElementById('chatHint').style.display='none';
+  document.getElementById('chatNotif').style.display='none';
+  if(chatOpen&&!chatInit)initChat();
+  if(chatOpen)setTimeout(function(){var m=document.getElementById('chatMessages');m.scrollTop=m.scrollHeight;},100);
+}
+
+function initChat(){
+  chatInit=true;
+  addBot("Hello, sister! Welcome to <b>It's in the Core</b> 🌸",false);
+  setTimeout(function(){
+    addBot("I'm here to help you find the right journal, answer questions about ordering, or connect you with the team. What can I help you with today?",false);
+    showQR(['Which journal is right for me?','How much does it cost?','Buy Digital','Order Physical','Send a message']);
+  },600);
+}
+
+function addBot(text,typing){
+  var msgs=document.getElementById('chatMessages');
+  if(typing===false){doAddBot(text);return;}
+  var t=document.createElement('div');
+  t.className='chat-msg bot';t.id='ctyping';
+  t.innerHTML='<div class="chat-typing"><span></span><span></span><span></span></div>';
+  msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(function(){var ti=document.getElementById('ctyping');if(ti)ti.remove();doAddBot(text);},900);
+}
+
+function doAddBot(text){
+  var msgs=document.getElementById('chatMessages');
+  var now=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  var d=document.createElement('div');d.className='chat-msg bot';
+  d.innerHTML='<div class="chat-msg-bubble">'+text.replace(/\n/g,'<br>')+'</div><div class="chat-msg-time">'+now+'</div>';
+  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
+  chatLog.push({r:'bot',t:text.replace(/<[^>]+>/g,'')});
+}
+
+function addUser(text){
+  var msgs=document.getElementById('chatMessages');
+  var now=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  var d=document.createElement('div');d.className='chat-msg user';
+  d.innerHTML='<div class="chat-msg-bubble">'+esc(text)+'</div><div class="chat-msg-time">'+now+'</div>';
+  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
+  chatLog.push({r:'user',t:text});
+}
+
+function showQR(opts){
+  var qr=document.getElementById('chatQuickReplies');
+  qr.innerHTML=opts.map(function(o){return'<button class="chat-qr" onclick="doQR(\''+o.replace(/'/g,"\\'")+'\')">'+ o+'</button>';}).join('');
+}
+
+function clearQR(){document.getElementById('chatQuickReplies').innerHTML='';}
+
+function doQR(text){clearQR();process(text);}
+
+function sendChatMsg(){
+  var inp=document.getElementById('chatInput');
+  var text=inp.value.trim();if(!text)return;
+  inp.value='';inp.style.height='auto';clearQR();process(text);
+}
+
+function process(text){
+  addUser(text);
+  if(awaitName){awaitName=false;vName=text;awaitEmail=true;addBot('Thanks '+esc(text)+'! And your email address so we can reply?');return;}
+  if(awaitEmail){awaitEmail=false;vEmail=text;awaitMsg=true;addBot('Perfect, go ahead and type your message and we\'ll get back to you as soon as possible. 💛');return;}
+  if(awaitMsg){awaitMsg=false;submitEmail(vName,vEmail,text);addBot('Your message has been sent! 🙏 We\'ll reply to <b>'+esc(vEmail)+'</b> within a few hours.');setTimeout(function(){showQR(['Ask another question','Tell me about the journals','How do I order?']);},800);return;}
+  var m=text.toLowerCase();
+  if(m.includes('send a message')||m.includes('leave a message')||m.includes('speak to someone')||m.includes('talk to human')){
+    awaitName=true;addBot("Of course! What's your name?");return;
+  }
+  var rsp=getRsp(text);
+  if(rsp){addBot(rsp.t);if(rsp.q)setTimeout(function(){showQR(rsp.q);},1000);}
+  else{addBot("That's a great question, let me get the team to help you with that personally. Would you like to leave your details?");setTimeout(function(){showQR(['Yes, send a message','Which journal is right for me?','Tell me about pricing']);},900);}
+}
+
+function submitEmail(name,email,msg){
+  var f=document.createElement('form');
+  f.action='https://formsubmit.co/builderhercore@pm.me';f.method='POST';f.style.display='none';
+  var fields={'_subject':'Live Chat, It\'s in the Core','_captcha':'false','_template':'table',
+    'Visitor Name':name,'Visitor Email':email,'Message':msg,
+    'Conversation':chatLog.map(function(l){return l.r.toUpperCase()+': '+l.t;}).join('\n')};
+  for(var k in fields){var i=document.createElement('input');i.name=k;i.value=fields[k];f.appendChild(i);}
+  document.body.appendChild(f);f.submit();setTimeout(function(){f.remove();},2000);
+}
+
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,80)+'px';}
+function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+setTimeout(function(){
+  if(!chatOpen){
+    document.getElementById('chatHint').style.display='block';
+    setTimeout(function(){var h=document.getElementById('chatHint');if(h&&!chatOpen)h.style.display='none';},5000);
+  }
+},4000);
+
+</script>
+
+<!-- ════ LIVE CHAT WIDGET ════ -->
+<div class="chat-fab" id="chatFab">
+  <div class="chat-bubble-hint" id="chatHint">💬 Have a question? We're here!</div>
+  <button class="chat-btn" id="chatBtn" onclick="toggleChat()" aria-label="Open chat">
+    <div class="chat-notif" id="chatNotif">1</div>
+    <svg class="icon-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <svg class="icon-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+</div>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-win-head">
+    <div class="chat-avatar">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    <div class="chat-head-info">
+      <div class="chat-head-name">It's in the Core</div>
+      <div class="chat-head-status">
+        <div class="chat-status-dot"></div>
+        <span class="chat-status-txt">Online, usually replies within the hour</span>
+      </div>
+    </div>
+    <button class="chat-head-close" onclick="toggleChat()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-quick-replies" id="chatQuickReplies"></div>
+  <div class="chat-input-row">
+    <textarea class="chat-input" id="chatInput" placeholder="Type your message..." rows="1"
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChatMsg()}"
+      oninput="autoResize(this)"></textarea>
+    <button class="chat-send" onclick="sendChatMsg()">
+      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+</body>
+</html>
